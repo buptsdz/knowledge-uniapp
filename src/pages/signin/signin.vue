@@ -29,19 +29,19 @@
 						<input style="margin-left: 7%;" focus placeholder="请输入您的密码" />
 					</view>
 				</view>
-				<view class="forget-pin" @tap="goto()">忘记密码?</view>
+				<view class="forget-pin" @tap="goTo()">忘记密码?</view>
 			</view>
 			<view class="button-section">
 				<view class="sign-in">
-					<button class="bt-sign-in" @tap="goto()">登录</button>
+					<button class="bt-sign-in" @tap="goTo1()">登录</button>
 				</view>
 				<view class="sign-up">
-					<button class="bt-sign-up" @tap="goto()">注册</button>
+					<button class="bt-sign-up" @click="goTo2()">注册</button>
 				</view>
 			</view>
-			<view class="otherway-sign-in">
+			<view class=" otherway-sign-in">
 				<view class="other-way">
-				    <image class="other-way-img" src="../../static/logo.png" mode="aspectFit"></image>
+					<image class="other-way-img" src="../../static/logo.png" mode="aspectFit"></image>
 					<image class="other-way-img" src="../../static/logo.png" mode="aspectFit"></image>
 					<image class="other-way-img" src="../../static/logo.png" mode="aspectFit"></image>
 				</view>
@@ -61,10 +61,17 @@
 			}
 		},
 		methods: {
-			goto(url) {
+			goTo1(){
+				console.log("到注册页面1")
 				uni.navigateTo({
-					url: url
-				})
+					url: "../signup/signup",
+				});
+			},
+			goTo2(){
+				console.log("到注册页面2")
+				uni.navigateTo({
+					url: "../signup/signup",
+				});
 			}
 		}
 	}
@@ -87,6 +94,7 @@
 
 	.page .up-section {
 		background-image: linear-gradient(to right, rgb(120, 195, 255), rgb(54, 94, 254));
+
 		.up-section-text {
 			display: flex;
 			flex-direction: column;
@@ -96,7 +104,7 @@
 
 			.up-section-text-big {
 				font-size: 20px;
-				margin-top: 25%;
+				margin-top: 22%;
 
 				.big-p {
 					margin-top: 8px;
@@ -158,13 +166,13 @@
 		}
 
 		.button-section {
-			margin-top: 25px;
+			margin-top: 20px;
 			margin-left: 6%;
 			display: flex;
 			flex-direction: column;
 
 			.sign-in {
-				margin-bottom: 20px;
+				margin-bottom:23px;
 				width: 92%;
 
 				.bt-sign-in {
@@ -182,7 +190,7 @@
 				.bt-sign-up {
 					height: 50px;
 					border-radius: 25px;
-					background: linear-gradient(to right, rgb(206, 223, 253), rgb(232, 238, 254));
+					background-image: linear-gradient(to right, rgb(206, 223, 253), rgb(232, 238, 254));
 					color: black;
 					box-shadow: 0 4px 4px 2px rgb(210, 210, 210);
 				}
@@ -191,20 +199,23 @@
 
 		.otherway-sign-in {
 			flex-grow: 1;
-			bottom: 40px;
+			margin-bottom: 40px;
 			display: flex;
 			flex-direction: column-reverse;
 			align-items: center;
-            position: relative;
+			position: relative;
+
 			.split-line {
 				color: rgb(90, 90, 90);
 				margin-bottom: 15px;
 			}
-			.other-way{
+
+			.other-way {
 				display: flex;
 				flex-direction: row;
 				gap: 35px;
-				.other-way-img{
+
+				.other-way-img {
 					height: 40px;
 					width: 40px;
 					border-radius: 20px;

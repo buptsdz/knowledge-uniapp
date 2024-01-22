@@ -17,6 +17,14 @@
 					"titleView": false
 				}
 			}
+		},
+		{
+			"path" : "pages/signup/signup",
+			"style" : 
+			{
+				"navigationBarTitleText" : "signup",
+				"enablePullDownRefresh" : false
+			}
 		}
 	],
 	"globalStyle": {
