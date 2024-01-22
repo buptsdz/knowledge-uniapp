@@ -5,6 +5,18 @@
 			"style": {
 				"navigationBarTitleText": "uni-app"
 			}
+		},
+		{
+			"path" : "pages/signin/signin",
+			"style" : 
+			{
+				"navigationBarTitleText" : "signin",
+				"enablePullDownRefresh" : false,
+				"navigationStyle": "custom",
+				"app-plus": {
+					"titleView": false
+				}
+			}
 		}
 	],
 	"globalStyle": {
