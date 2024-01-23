@@ -36,7 +36,7 @@
 					<button class="bt-sign-in" @tap="goTo1()">登录</button>
 				</view>
 				<view class="sign-up">
-					<button class="bt-sign-up" @click="goTo2()">注册</button>
+					<button class="bt-sign-up" @tap="goTo2()">注册</button>
 				</view>
 			</view>
 			<view class=" otherway-sign-in">

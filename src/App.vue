@@ -13,5 +13,12 @@
 </script>
 
 <style>
-	/*每个页面公共css */
+	@font-face {
+		font-family: 'SourceHanSansCN';
+		src: url('./static/fonts/SourceHanSansCN-Regular.ttf') format('truetype');
+	}
+
+	body {
+		font-family: 'SourceHanSansCN', sans-serif;
+	}
 </style>
