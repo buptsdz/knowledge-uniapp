@@ -4,6 +4,9 @@
 		<view class="text-area">
 			<text class="title">{{ title }}</text>
 		</view>
+		<view>
+			<button @tap="goTo()">点我跳转</button>
+		</view>
 	</view>
 </template>
 
@@ -15,7 +18,13 @@
 			}
 		},
 		onLoad() {},
-		methods: {},
+		methods: {
+			goTo(){
+				uni.navigateTo({
+					url: "../signin/signin",
+				});
+			}
+		},
 	}
 </script>
 
