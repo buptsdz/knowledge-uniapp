@@ -27,7 +27,11 @@
 			"style" : 
 			{
 				"navigationBarTitleText" : "signup",
-				"enablePullDownRefresh" : false
+				"enablePullDownRefresh" : false,
+				"navigationStyle": "custom",
+				"app-plus": {
+					"titleView": false
+				}
 				
 			}
 		},

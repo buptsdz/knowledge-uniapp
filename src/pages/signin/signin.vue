@@ -113,7 +113,7 @@
 		.logo-section {
 			position: absolute;
 			left: 27%;
-			top: 10%;
+			top: 10%; 
 			z-index: 2;
 		}
 
