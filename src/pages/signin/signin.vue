@@ -10,6 +10,9 @@
 					第一代数字化知识交互学习软件(鸿蒙版)
 				</view>
 			</view>
+			<view class="logo-section">
+				<image style="height:48vw;" src="../../static/image/logo/logo-light.png" alt="" mode="aspectFit"/>
+			</view>
 		</view>
 		<view class="down-section">
 			<view class="input-section">
@@ -41,9 +44,18 @@
 			</view>
 			<view class=" otherway-sign-in">
 				<view class="other-way">
-					<image class="other-way-img" src="../../static/image/logo.png" mode="aspectFit"></image>
-					<image class="other-way-img" src="../../static/image/logo.png" mode="aspectFit"></image>
-					<image class="other-way-img" src="../../static/image/logo.png" mode="aspectFit"></image>
+					<view class="other-way-img">
+						<image style="height: 25px;width: 25px;" src="../../static/image/logo/wx-logo-raw.png"
+							mode="aspectFit"></image>
+					</view>
+					<view class="other-way-img">
+						<image style="height: 24px;width: 24px;" src="../../static/image/logo/qq-logo-raw.png"
+							mode="aspectFit"></image>
+					</view>
+					<view class="other-way-img">
+						<image style="height: 22px;width: 22px;margin-top: -5px;" src="../../static/image/logo/apple-logo-raw.png"
+							mode="aspectFit"></image>
+					</view>
 				</view>
 				<view class="split-line">
 					— 其他登录方式 —
@@ -61,13 +73,13 @@
 			}
 		},
 		methods: {
-			goTo1(){
+			goTo1() {
 				console.log("到注册页面1")
 				uni.navigateTo({
 					url: "../signup/signup",
 				});
 			},
-			goTo2(){
+			goTo2() {
 				console.log("到注册页面2")
 				uni.navigateTo({
 					url: "../signup/signup",
@@ -94,6 +106,13 @@
 
 	.page .up-section {
 		background-image: linear-gradient(to right, rgb(120, 195, 255), rgb(54, 94, 254));
+
+		.logo-section {
+			position: absolute;
+			left: 28%;
+			top: 12%;
+			z-index: 2;
+		}
 
 		.up-section-text {
 			display: flex;
@@ -122,6 +141,7 @@
 
 	.page .down-section {
 		flex-grow: 1;
+		z-index: 9;
 		display: flex;
 		flex-direction: column;
 		background-color: $uni-bg-color-signin;
@@ -172,7 +192,7 @@
 			flex-direction: column;
 
 			.sign-in {
-				margin-bottom:23px;
+				margin-bottom: 23px;
 				width: 92%;
 
 				.bt-sign-in {
@@ -210,16 +230,23 @@
 				margin-bottom: 15px;
 			}
 
-			.other-way {
-				display: flex;
-				flex-direction: row;
-				gap: 35px;
+				//其他方式图标的排列
+				.other-way {
+					display: flex;
+					flex-direction: row;
+					gap: 35px;
 
-				.other-way-img {
-					height: 40px;
-					width: 40px;
-					border-radius: 20px;
-				}
+					//每个图标的区域
+					.other-way-img {
+						border:1px solid black;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						height: 38px;
+						width: 38px;
+						border-radius: 21px;
+						background-color: white;
+					}
 			}
 		}
 	}

@@ -2,7 +2,7 @@
 	<!-- 主页 分成三部分 logo部分 中间部分 底部协议-->
 	<view class="page">
 		<view class="logo">
-			<img src="../../static/image/logo.png" alt="" />
+			<img class="logo-img" src="../../static/image/logo/logo-dark.png" alt="" />
 			<text style="margin-top: 6px;">
 				儒升
 			</text>
@@ -11,7 +11,8 @@
 			<view class="button-section">
 				<view class="sign-in-wx">
 					<button class="wx-in" @tap="goTo1()">
-						<img src="../../static/image/logo.png" style="height: 20px;align-self: center;margin-right: 6px;" />
+						<img src="../../static/image/logo/wx-logo-light.png"
+							style="height: 20px;align-self: center;margin-right: 6px;" />
 						<text>微信登录</text>
 					</button>
 				</view>
@@ -27,9 +28,18 @@
 					— 其他登录方式 —
 				</view>
 				<view class="other-way">
-					<image class="other-way-img" src="../../static/image/logo.png" mode="aspectFit"></image>
-					<image class="other-way-img" src="../../static/image/logo.png" mode="aspectFit"></image>
-					<image class="other-way-img" src="../../static/image/logo.png" mode="aspectFit"></image>
+					<view class="other-way-img">
+						<image style="height: 25px;width: 25px;" src="../../static/image/logo/wx-logo-raw.png"
+							mode="aspectFit"></image>
+					</view>
+					<view class="other-way-img">
+						<image style="height: 24px;width: 24px;" src="../../static/image/logo/qq-logo-raw.png"
+							mode="aspectFit"></image>
+					</view>
+					<view class="other-way-img">
+						<image style="height: 22px;width: 22px;margin-top: -5px;" src="../../static/image/logo/apple-logo-raw.png"
+							mode="aspectFit"></image>
+					</view>
 				</view>
 			</view>
 		</view>
@@ -55,10 +65,10 @@
 		onLoad() {},
 		methods: {
 			xieyiConfirm() {
-				this.xieyichecked=!this.xieyichecked;
+				this.xieyichecked = !this.xieyichecked;
 				console.log(this.xieyichecked);
 			},
-			goSignin_account(){
+			goSignin_account() {
 				console.log("到注册页面1")
 				uni.navigateTo({
 					url: "../signin/signin",
@@ -88,6 +98,10 @@
 			font-size: 20px;
 			align-items: center;
 			color: blue;
+
+			.logo-img {
+				height: 77px;
+			}
 		}
 
 		.signin-section {
@@ -150,15 +164,22 @@
 					font-size: 14px;
 				}
 
+				//其他方式图标的排列
 				.other-way {
 					display: flex;
 					flex-direction: row;
 					gap: 35px;
 
+					//每个图标的区域
 					.other-way-img {
-						height: 40px;
-						width: 40px;
-						border-radius: 20px;
+						border:1px solid black;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						height: 38px;
+						width: 38px;
+						border-radius: 21px;
+						background-color: white;
 					}
 				}
 			}

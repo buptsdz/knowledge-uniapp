@@ -1,0 +1,1 @@
+import{o as a,c as s,w as e,i as t,d as o}from"./index-d449b194.js";import{_ as r}from"./_plugin-vue_export-helper.1b428a4d.js";const d=r({data:()=>({}),methods:{}},[["render",function(r,d,n,u,i,l){const p=t;return a(),s(p,null,{default:e((()=>[o(" sdasda ")])),_:1})}]]);export{d as default};
