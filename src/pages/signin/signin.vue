@@ -41,9 +41,9 @@
 			</view>
 			<view class=" otherway-sign-in">
 				<view class="other-way">
-					<image class="other-way-img" src="../../static/logo.png" mode="aspectFit"></image>
-					<image class="other-way-img" src="../../static/logo.png" mode="aspectFit"></image>
-					<image class="other-way-img" src="../../static/logo.png" mode="aspectFit"></image>
+					<image class="other-way-img" src="../../static/image/logo.png" mode="aspectFit"></image>
+					<image class="other-way-img" src="../../static/image/logo.png" mode="aspectFit"></image>
+					<image class="other-way-img" src="../../static/image/logo.png" mode="aspectFit"></image>
 				</view>
 				<view class="split-line">
 					— 其他登录方式 —

@@ -2,7 +2,7 @@
 	<!-- 主页 分成三部分 logo部分 中间部分 底部协议-->
 	<view class="page">
 		<view class="logo">
-			<img src="../../static/logo.png" alt="" />
+			<img src="../../static/image/logo.png" alt="" />
 			<text style="margin-top: 6px;">
 				儒升
 			</text>
@@ -11,7 +11,7 @@
 			<view class="button-section">
 				<view class="sign-in-wx">
 					<button class="wx-in" @tap="goTo1()">
-						<img src="../../static/logo.png" style="height: 20px;align-self: center;margin-right: 6px;" />
+						<img src="../../static/image/logo.png" style="height: 20px;align-self: center;margin-right: 6px;" />
 						<text>微信登录</text>
 					</button>
 				</view>
@@ -27,9 +27,9 @@
 					— 其他登录方式 —
 				</view>
 				<view class="other-way">
-					<image class="other-way-img" src="../../static/logo.png" mode="aspectFit"></image>
-					<image class="other-way-img" src="../../static/logo.png" mode="aspectFit"></image>
-					<image class="other-way-img" src="../../static/logo.png" mode="aspectFit"></image>
+					<image class="other-way-img" src="../../static/image/logo.png" mode="aspectFit"></image>
+					<image class="other-way-img" src="../../static/image/logo.png" mode="aspectFit"></image>
+					<image class="other-way-img" src="../../static/image/logo.png" mode="aspectFit"></image>
 				</view>
 			</view>
 		</view>

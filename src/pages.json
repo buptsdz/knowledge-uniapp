@@ -28,6 +28,43 @@
 			{
 				"navigationBarTitleText" : "signup",
 				"enablePullDownRefresh" : false
+				
+			}
+		},
+		{
+			"path" : "pages/basefunction/basefunction",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false,
+				"navigationStyle": "custom",
+				"app-plus": {
+					"titleView": false
+				}
+			}
+		},
+		{
+			"path" : "pages/schoolcicle/schoolcicle",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/pertifunction/pertifunction",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/mine/mine",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
 			}
 		}
 	],
@@ -36,5 +73,38 @@
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"color": "white",
+		"height": "68px",
+		"selectedColor": "black",
+		"borderStyle": "black",
+		"backgroundColor": "rgb(72,105,226)",
+		"iconWidth": "30px",
+		"list": [{
+				"pagePath": "pages/basefunction/basefunction",
+				"iconPath": "static/image/logo.png",
+				"selectedIconPath": "static/image/logo.png",
+				"text": "基础功能"
+			},
+			{
+				"pagePath": "pages/schoolcicle/schoolcicle",
+				"iconPath": "static/image/logo.png",
+				"selectedIconPath": "static/image/logo.png",
+				"text": "校园圈"
+			},
+			{
+				"pagePath": "pages/pertifunction/pertifunction",
+				"iconPath": "static/image/logo.png",
+				"selectedIconPath": "static/image/logo.png",
+				"text": "特色功能"
+			},
+			{
+				"pagePath": "pages/mine/mine",
+				"iconPath": "static/image/logo.png",
+				"selectedIconPath": "static/image/logo.png",
+				"text": "我的"
+			}
+		]
 	}
 }
