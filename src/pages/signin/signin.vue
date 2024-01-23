@@ -30,6 +30,9 @@
 					</view>
 					<view class="uni-input2">
 						<input style="margin-left: 7%;" focus placeholder="请输入您的密码" />
+						<view style="flex-grow: 1;display: flex;justify-content: flex-end;">
+							<image style="height: 18px;width: 18px;right: 20%;" src="../../static/image/symple/pin-visualable.png" mode="aspectFit"></image>
+						</view>
 					</view>
 				</view>
 				<view class="forget-pin" @tap="goTo()">忘记密码?</view>
@@ -109,8 +112,8 @@
 
 		.logo-section {
 			position: absolute;
-			left: 28%;
-			top: 12%;
+			left: 27%;
+			top: 10%;
 			z-index: 2;
 		}
 
@@ -123,7 +126,7 @@
 
 			.up-section-text-big {
 				font-size: 20px;
-				margin-top: 22%;
+				margin-top: 20%;
 
 				.big-p {
 					margin-top: 8px;
@@ -159,16 +162,7 @@
 
 			.pin-code {}
 
-			.uni-input1 {
-				display: flex;
-				align-items: center;
-				margin-top: 15px;
-				background-color: rgb(205, 222, 252);
-				width: 92%;
-				height: 50px;
-				border-radius: 15px;
-			}
-
+			.uni-input1,
 			.uni-input2 {
 				display: flex;
 				align-items: center;

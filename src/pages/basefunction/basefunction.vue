@@ -1,6 +1,6 @@
 <template>
-	<view>
-		sdasda
+	<view class="top-img">
+		<image style="width:100%;" src="../../static/image/background/bg-basefunction-top.png" mode=""></image>
 	</view>
 </template>
 
@@ -8,15 +8,26 @@
 	export default {
 		data() {
 			return {
-				
+
 			}
 		},
 		methods: {
-			
+
 		}
 	}
 </script>
 
-<style>
+<style lang="scss">
+@import "../../uni.scss";
 
+	body {
+		width: 100%;
+		background-color:$uni-bg-color-signin;
+	}
+
+	.top-img {
+		width: 100%;
+		height: fit-content;
+		z-index: -10;
+	}
 </style>
