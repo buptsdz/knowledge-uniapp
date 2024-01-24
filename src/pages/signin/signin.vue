@@ -11,7 +11,7 @@
 				</view>
 			</view>
 			<view class="logo-section">
-				<image style="height:48vw;" src="../../static/image/logo/logo-light.png" alt="" mode="aspectFit"/>
+				<image style="height:48vw;" src="../../static/image/logo/logo-light.png" alt="" mode="aspectFit" />
 			</view>
 		</view>
 		<view class="down-section">
@@ -21,7 +21,7 @@
 						手机号
 					</view>
 					<view class="uni-input1">
-						<input style="margin-left: 7%;" placeholder="请输入您的手机号" />
+						<input type="number" style="margin-left: 7%;" placeholder="请输入您的手机号" v-model="phonenum" />
 					</view>
 				</view>
 				<view class="pin-code">
@@ -29,9 +29,11 @@
 						密码
 					</view>
 					<view class="uni-input2">
-						<input style="margin-left: 7%;" focus placeholder="请输入您的密码" />
+						<input type="safe-password" style="margin-left: 7%;" focus placeholder="请输入您的密码"
+							v-model="password" />
 						<view style="flex-grow: 1;display: flex;justify-content: flex-end;">
-							<image style="height: 18px;width: 18px;right: 20%;" src="../../static/image/symple/pin-visualable.png" mode="aspectFit"></image>
+							<image style="height: 18px;width: 18px;right: 20%;"
+								src="../../static/image/symple/pin-visualable.png" mode="aspectFit"></image>
 						</view>
 					</view>
 				</view>
@@ -39,7 +41,7 @@
 			</view>
 			<view class="button-section">
 				<view class="sign-in">
-					<button class="bt-sign-in" @tap="goTo1()">登录</button>
+					<button class="bt-sign-in" @tap="onSubmit">登录</button>
 				</view>
 				<view class="sign-up">
 					<button class="bt-sign-up" @tap="goTo2()">注册</button>
@@ -56,8 +58,8 @@
 							mode="aspectFit"></image>
 					</view>
 					<view class="other-way-img">
-						<image style="height: 22px;width: 22px;margin-top: -5px;" src="../../static/image/logo/apple-logo-raw.png"
-							mode="aspectFit"></image>
+						<image style="height: 22px;width: 22px;margin-top: -5px;"
+							src="../../static/image/logo/apple-logo-raw.png" mode="aspectFit"></image>
 					</view>
 				</view>
 				<view class="split-line">
@@ -72,18 +74,70 @@
 	export default {
 		data() {
 			return {
-
+				phonenum: "", //测试号码17315718923
+				password: "", //密码12345678
 			}
 		},
+		onLoad() {
+			var token = localStorage.getItem("token");
+			console.log(token);
+		},
 		methods: {
-			goTo1() {
-				console.log("到注册页面1")
-				uni.navigateTo({
-					url: "../signup/signup",
-				});
+			test() {
+				console.log(this.phonenum, this.password);
+			},
+			onSubmit(values) {
+				//点击登录
+				// console.log("submit", values);
+				//首先判断用户名和密码不能为空,如果为空就不提交请求
+				if (this.phonenum.length == 0 || this.password == 0) {
+					uni.showToast({
+						title: "输入的手机号或密码不能为空！",
+						icon: "error",
+						position: "top",
+					});
+					return;
+				}
+				// 请求登录接口并配置参数
+				this.$axios.post("http://www.liuchen.work:280/user-service/api/auth/login", {
+						usernameOrPhone: this.phonenum,
+						password: this.password
+					})
+					.then((res) => {
+						// 检查响应中的issuccess字段
+						console.log(res);
+						if (res.data.isSuccess==1) {
+							// 请求成功且服务器返回成功状态
+							var token = res.data.data.token; // 读取token
+							localStorage.setItem("token", token); // 保存token
+							// 登录成功的提示
+							uni.showToast({
+								title: "登录成功！",
+								icon: "success",
+							})
+							// 跳转到首页
+							this.$router.push("../basefunction/basefunction");
+						} else {
+							// 服务器返回失败状态
+							uni.showToast({
+								title: "用户名或密码错误",
+								icon: "none",
+								duration: 2000
+							});
+						}
+					})
+					.catch((err) => {
+						// 网络或其他错误
+						console.log(err);
+						uni.showToast({
+							title: "请求失败",
+							icon: "none",
+							duration: 2000
+						});
+					});
 			},
 			goTo2() {
-				console.log("到注册页面2")
+				console.log("到注册页面2");
 				uni.navigateTo({
 					url: "../signup/signup",
 				});
@@ -113,7 +167,7 @@
 		.logo-section {
 			position: absolute;
 			left: 27%;
-			top: 10%; 
+			top: 10%;
 			z-index: 2;
 		}
 
@@ -224,23 +278,23 @@
 				margin-bottom: 15px;
 			}
 
-				//其他方式图标的排列
-				.other-way {
-					display: flex;
-					flex-direction: row;
-					gap: 35px;
+			//其他方式图标的排列
+			.other-way {
+				display: flex;
+				flex-direction: row;
+				gap: 35px;
 
-					//每个图标的区域
-					.other-way-img {
-						border:1px solid black;
-						display: flex;
-						justify-content: center;
-						align-items: center;
-						height: 38px;
-						width: 38px;
-						border-radius: 21px;
-						background-color: white;
-					}
+				//每个图标的区域
+				.other-way-img {
+					border: 1px solid black;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					height: 38px;
+					width: 38px;
+					border-radius: 21px;
+					background-color: white;
+				}
 			}
 		}
 	}

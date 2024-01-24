@@ -62,7 +62,10 @@
 				xieyichecked: false,
 			}
 		},
-		onLoad() {},
+		onLoad() {
+			var token = localStorage.getItem("token");
+			console.log(token);
+		},
 		methods: {
 			xieyiConfirm() {
 				this.xieyichecked = !this.xieyichecked;
