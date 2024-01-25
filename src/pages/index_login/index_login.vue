@@ -21,7 +21,7 @@
 				</view>
 			</view>
 			<view class="sign-in-account">
-				<text @tap="goSignin_account()">账号密码登录</text>
+				<text @tap="goLogin_account()">账号密码登录</text>
 			</view>
 			<view class=" otherway-sign-in">
 				<view class="split-line">
@@ -64,17 +64,17 @@
 		},
 		onLoad() {
 			var token = localStorage.getItem("token");
-			console.log(token);
+			console.log("token:",token);
 		},
 		methods: {
 			xieyiConfirm() {
 				this.xieyichecked = !this.xieyichecked;
 				console.log(this.xieyichecked);
 			},
-			goSignin_account() {
-				console.log("到注册页面1")
+			goLogin_account() {
+				console.log("到登录页面")
 				uni.navigateTo({
-					url: "../signin/signin",
+					url: "../login/login",
 				});
 			}
 		},

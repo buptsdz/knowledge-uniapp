@@ -1,7 +1,7 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/index_signin/index_signin",
+			"path": "pages/index_login/index_login",
 			"style": {
 				"navigationBarTitleText": "uni-app",
 				"navigationStyle": "custom",
@@ -11,10 +11,10 @@
 			}
 		},
 		{
-			"path" : "pages/signin/signin",
+			"path" : "pages/login/login",
 			"style" : 
 			{
-				"navigationBarTitleText" : "signin",
+				"navigationBarTitleText" : "login",
 				"enablePullDownRefresh" : false,
 				"navigationStyle": "custom",
 				"app-plus": {
@@ -23,7 +23,7 @@
 			}
 		},
 		{
-			"path" : "pages/signup/signup",
+			"path" : "pages/register/register",
 			"style" : 
 			{
 				"navigationBarTitleText" : "signup",
@@ -87,26 +87,26 @@
 		"iconWidth": "30px",
 		"list": [{
 				"pagePath": "pages/basefunction/basefunction",
-				"iconPath": "static/image/logo.png",
-				"selectedIconPath": "static/image/logo.png",
+				"iconPath": "static/image/logo/logo.png",
+				"selectedIconPath": "static/image/logo/logo.png",
 				"text": "基础功能"
 			},
 			{
 				"pagePath": "pages/schoolcicle/schoolcicle",
-				"iconPath": "static/image/logo.png",
-				"selectedIconPath": "static/image/logo.png",
+				"iconPath": "static/image/logo/logo.png",
+				"selectedIconPath": "static/image/logo/logo.png",
 				"text": "校园圈"
 			},
 			{
 				"pagePath": "pages/pertifunction/pertifunction",
-				"iconPath": "static/image/logo.png",
-				"selectedIconPath": "static/image/logo.png",
+				"iconPath": "static/image/logo/logo.png",
+				"selectedIconPath": "static/image/logo/logo.png",
 				"text": "特色功能"
 			},
 			{
 				"pagePath": "pages/mine/mine",
-				"iconPath": "static/image/logo.png",
-				"selectedIconPath": "static/image/logo.png",
+				"iconPath": "static/image/logo/logo.png",
+				"selectedIconPath": "static/image/logo/logo.png",
 				"text": "我的"
 			}
 		]

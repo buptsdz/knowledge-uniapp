@@ -16,38 +16,49 @@
 		</view>
 		<view class="down-section">
 			<view class="input-section">
-				<view class="phone-num">
+				<view class="user-name">
 					<view style="font-size: 20px;font-weight: 600;">
-						手机号
+						用户名
 					</view>
 					<view class="uni-input1">
-						<input type="number" style="margin-left: 7%;" placeholder="请输入您的手机号" v-model="phonenum" />
+						<input style="margin-left: 7%;" focus placeholder="请输入您的用户名" v-model="user.username" />
 					</view>
 				</view>
-				<view class="pin-code">
-					<view style="font-size: 20px;font-weight: 600;">
+				<view class="pass-word">
+					<view style="margin-top:15px;font-size: 20px;font-weight: 600;">
 						密码
 					</view>
 					<view class="uni-input2">
-						<input type="safe-password" style="margin-left: 7%;" focus placeholder="请输入您的密码"
-							v-model="password" />
+						<input type="safe-password" style="margin-left: 7%;" placeholder="请输入您的密码"
+							v-model="user.password" />
 						<view style="flex-grow: 1;display: flex;justify-content: flex-end;">
 							<image style="height: 18px;width: 18px;right: 20%;"
 								src="../../static/image/symple/pin-visualable.png" mode="aspectFit"></image>
 						</view>
 					</view>
 				</view>
-				<view class="forget-pin" @tap="goTo()">忘记密码?</view>
+				<view class="phone-num">
+					<view style="margin-top:15px; font-size: 20px;font-weight: 600;">
+						验证码
+					</view>
+					<view class="uni-input3">
+						<input type="tel" style="margin-left: 7%;" placeholder="请输入您的手机号" v-model="user.phonenum" />
+						<button class="get-verification-code" @tap="getVercode">获取验证码</button>
+					</view>
+				</view>
+				<view class="verification-ensure">
+					<view class="uni-input4">
+						<input style="margin-left: 7%;" placeholder="请输入验证码" v-model="user.vercode" />
+					</view>
+				</view>
 			</view>
 			<view class="button-section">
-				<view class="sign-in">
-					<button class="bt-sign-in" @tap="onSubmit">登录</button>
-				</view>
 				<view class="sign-up">
-					<button class="bt-sign-up" @tap="goTo2()">注册</button>
+					<button class="bt-sign-up" @tap="registOnSubmit">注册</button>
 				</view>
 			</view>
-			<view class=" otherway-sign-in">
+			<!-- 下面两块颠倒了 -->
+			<view class=" otherway-sign-up">
 				<view class="other-way">
 					<view class="other-way-img">
 						<image style="height: 25px;width: 25px;" src="../../static/image/logo/wx-logo-raw.png"
@@ -63,7 +74,7 @@
 					</view>
 				</view>
 				<view class="split-line">
-					— 其他登录方式 —
+					— 其他注册方式 —
 				</view>
 			</view>
 		</view>
@@ -74,73 +85,125 @@
 	export default {
 		data() {
 			return {
-				phonenum: "", //测试号码17315718923
-				password: "", //密码12345678
+				user: {
+					username: "",
+					password: "",
+					vercode: "",
+					phonenum: "",
+				},
+				phoneIstrue: 0,
 			}
 		},
-		onLoad() {
-			var token = localStorage.getItem("token");
-			console.log(token);
-		},
 		methods: {
-			test() {
-				console.log(this.phonenum, this.password);
-			},
-			onSubmit(values) {
-				//点击登录
-				// console.log("submit", values);
-				//首先判断用户名和密码不能为空,如果为空就不提交请求
-				if (this.phonenum.length == 0 || this.password == 0) {
+			registOnSubmit() {
+				// 请求数据
+				const requestData = {
+					username: this.user.username,
+					password: this.user.password,
+					code: this.user.vercode,
+					phone: this.user.phonenum,
+				};
+				//console.log(requestData);
+				// 检查所有字段是否填写
+				if (!requestData.username || !requestData.password || !requestData.code || !requestData.phone) {
+					return; // 阻止进一步执行
+				}
+				this.isPhone(this.user.phonenum);
+				if (this.phoneIstrue == 0) {
 					uni.showToast({
-						title: "输入的手机号或密码不能为空！",
+						title: "请输入正确的手机号！",
 						icon: "error",
 						position: "top",
 					});
 					return;
 				}
-				// 请求登录接口并配置参数
-				this.$axios.post("http://www.liuchen.work:280/user-service/api/auth/login", {
-						usernameOrPhone: this.phonenum,
-						password: this.password
-					})
-					.then((res) => {
-						// 检查响应中的issuccess字段
-						console.log(res);
-						if (res.data.isSuccess==1) {
-							// 请求成功且服务器返回成功状态
-							var token = res.data.data.token; // 读取token
-							localStorage.setItem("token", token); // 保存token
-							// 登录成功的提示
+				// 发送 POST 请求
+				this.$axios.post('http://www.liuchen.work:280/user-service/api/auth/register', requestData)
+					.then(response => {
+						// 请求成功处理
+						if (response.data.isSuccess == 1) {
+							// 注册成功的处理逻辑，例如提示用户
 							uni.showToast({
-								title: "登录成功！",
-								icon: "success",
-							})
-							// 跳转到首页
+								title: '注册成功',
+								icon: 'success',
+								duration: 2000
+							});
 							this.$router.push("../basefunction/basefunction");
 						} else {
-							// 服务器返回失败状态
+							// 注册失败的处理逻辑
 							uni.showToast({
-								title: "用户名或密码错误",
-								icon: "none",
+								title: '注册失败: ' + response.data.message,
+								icon: 'none',
 								duration: 2000
 							});
 						}
 					})
-					.catch((err) => {
-						// 网络或其他错误
-						console.log(err);
+					.catch(error => {
+						// 请求失败处理
 						uni.showToast({
-							title: "请求失败",
-							icon: "none",
+							title: '请求错误',
+							icon: 'none',
 							duration: 2000
 						});
+						console.error('注册请求失败:', error);
 					});
 			},
-			goTo2() {
-				console.log("到注册页面2");
-				uni.navigateTo({
-					url: "../signup/signup",
-				});
+			//验证电话号码
+			isPhone(phone) {
+				var reg = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/;
+				if (phone.length == 11) {
+					if (!reg.test(phone)) {
+						this.phoneIstrue = 0;
+						console.log('电话号码输入错误！');
+					} else {
+						this.phoneIstrue = 1;
+						console.log('电话号码输入正确！');
+					}
+				} else {
+					console.log('电话号码输入错误！');
+					this.phoneIstrue = 0;
+				}
+			},
+			//发送验证码
+			async getVercode() {
+				try {
+					this.isPhone(this.user.phonenum);
+					if (this.phoneIstrue == 0) {
+						uni.showToast({
+							title: "请输入正确的手机号！",
+							icon: "error",
+							position: "top",
+						});
+						return;
+					}
+					const response = await this.$axios.post('http://www.liuchen.work:280/user-service/api/auth/sms', {
+						phone: this.user.phonenum
+					});
+					// 检查响应是否表示操作成功
+					if (response.data.isSuccess == 1) {
+						// 如果成功，显示弹窗
+						uni.showToast({
+							title: '验证码已发送',
+							icon: 'success',
+							duration: 2000
+						});
+					} else {
+						// 如果不成功，也可以显示一个消息
+						uni.showToast({
+							title: '发送失败',
+							icon: 'none',
+							duration: 2000
+						});
+					}
+				} catch (err) {
+					// 处理请求错误
+					console.log(err)
+					uni.showToast({
+						title: '请求出错',
+						icon: 'none',
+						duration: 2000
+					});
+				}
 			}
 		}
 	}
@@ -167,7 +230,7 @@
 		.logo-section {
 			position: absolute;
 			left: 27%;
-			top: 10%;
+			top: 9%;
 			z-index: 2;
 		}
 
@@ -180,7 +243,7 @@
 
 			.up-section-text-big {
 				font-size: 20px;
-				margin-top: 20%;
+				margin-top: 18%;
 
 				.big-p {
 					margin-top: 8px;
@@ -197,8 +260,8 @@
 	}
 
 	.page .down-section {
+		z-index: 10;
 		flex-grow: 1;
-		z-index: 9;
 		display: flex;
 		flex-direction: column;
 		background-color: $uni-bg-color-signin;
@@ -207,7 +270,7 @@
 		margin-top: -20px;
 
 		.input-section {
-			margin-top: 35px;
+			margin-top: 30px;
 			margin-left: 6%;
 
 			.phone-num {
@@ -217,13 +280,24 @@
 			.pin-code {}
 
 			.uni-input1,
-			.uni-input2 {
+			.uni-input2,
+			.uni-input3,
+			.uni-input4,
+			.uni-input5 {
 				display: flex;
 				align-items: center;
 				margin-top: 15px;
 				background-color: rgb(205, 222, 252);
 				width: 92%;
 				height: 50px;
+				border-radius: 15px;
+			}
+
+			.get-verification-code {
+				position: absolute;
+				font-size: 16px;
+				right: 7%;
+				padding: 5px 10px;
 				border-radius: 15px;
 			}
 
@@ -239,19 +313,6 @@
 			display: flex;
 			flex-direction: column;
 
-			.sign-in {
-				margin-bottom: 23px;
-				width: 92%;
-
-				.bt-sign-in {
-					height: 50px;
-					border-radius: 25px;
-					background-color: rgb(72, 128, 247);
-					color: white;
-					box-shadow: 0 3px 3px 2px rgb(200, 200, 200);
-				}
-			}
-
 			.sign-up {
 				width: 92%;
 
@@ -265,7 +326,7 @@
 			}
 		}
 
-		.otherway-sign-in {
+		.otherway-sign-up {
 			flex-grow: 1;
 			margin-bottom: 40px;
 			display: flex;
@@ -276,6 +337,7 @@
 			.split-line {
 				color: rgb(90, 90, 90);
 				margin-bottom: 15px;
+				padding-top: 20px;
 			}
 
 			//其他方式图标的排列
