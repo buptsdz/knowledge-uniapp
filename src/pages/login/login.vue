@@ -44,7 +44,7 @@
 					<button class="bt-sign-in" @tap="onSubmit">登录</button>
 				</view>
 				<view class="sign-up">
-					<button class="bt-sign-up" @tap="goTo2()">注册</button>
+					<button class="bt-sign-up" @tap="goTores()">注册</button>
 				</view>
 			</view>
 			<view class=" otherway-sign-in">
@@ -75,8 +75,11 @@
 		data() {
 			return {
 				user:{
-					usernameOrPhone: "", //测试号码17315718923
-				    password: "", //密码12345678
+					//测试号码17315718923,用户名sdzsdzsdz,密码12345678
+					//15805293579,用户名sdzsdzsdz2,密码12345678
+					//15189182031,用户名sdzsdzsdz3,密码12345678
+					usernameOrPhone: "", 
+				    password: "", 
 				}
 			}
 		},
@@ -101,7 +104,7 @@
 					return;
 				}
 				// 请求登录接口并配置参数
-				this.$axios.post("http://www.liuchen.work:280/user-service/api/auth/login", {
+				this.$service.post("/user-service/api/auth/login", {
 						usernameOrPhone: this.user.usernameOrPhone,
 						password: this.user.password
 					})
@@ -138,7 +141,7 @@
 						});
 					});
 			},
-			goTo2() {
+			goTores() {
 				console.log("到注册页面");
 				uni.navigateTo({
 					url: "../register/register",

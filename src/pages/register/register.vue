@@ -43,7 +43,10 @@
 					</view>
 					<view class="uni-input3">
 						<input type="tel" style="margin-left: 7%;" placeholder="请输入您的手机号" v-model="user.phonenum" />
-						<button class="get-verification-code" @tap="getVercode">获取验证码</button>
+						<button class="get-verification-code" :class="{ 'button-disabled': sendcode.isButtonDisabled}"
+							@tap="getVercode" :disabled="sendcode.isButtonDisabled">
+							{{ sendcode.countdown ? `${sendcode.countdown}` : '获取验证码' }}
+						</button>
 					</view>
 				</view>
 				<view class="verification-ensure">
@@ -92,6 +95,10 @@
 					phonenum: "",
 				},
 				phoneIstrue: 0,
+				sendcode: {
+					isButtonDisabled: false,
+					countdown: 0,
+				}
 			}
 		},
 		methods: {
@@ -118,7 +125,7 @@
 					return;
 				}
 				// 发送 POST 请求
-				this.$axios.post('http://www.liuchen.work:280/user-service/api/auth/register', requestData)
+				this.$service.post('/user-service/api/auth/register', requestData)
 					.then(response => {
 						// 请求成功处理
 						if (response.data.isSuccess == 1) {
@@ -134,7 +141,7 @@
 							uni.showToast({
 								title: '注册失败: ' + response.data.message,
 								icon: 'none',
-								duration: 2000
+								duration: 2200
 							});
 						}
 					})
@@ -176,12 +183,13 @@
 						});
 						return;
 					}
-					const response = await this.$axios.post('http://www.liuchen.work:280/user-service/api/auth/sms', {
+					const response = await this.$service.post('/user-service/api/auth/sms', {
 						phone: this.user.phonenum
 					});
 					// 检查响应是否表示操作成功
 					if (response.data.isSuccess == 1) {
 						// 如果成功，显示弹窗
+						this.startCountdown();
 						uni.showToast({
 							title: '验证码已发送',
 							icon: 'success',
@@ -204,6 +212,17 @@
 						duration: 2000
 					});
 				}
+			},
+			startCountdown() {
+				this.sendcode.isButtonDisabled = true;
+				this.sendcode.countdown = 30; // 设置倒计时时间，例如 30 秒
+				const interval = setInterval(() => {
+					this.sendcode.countdown--;
+					if (this.sendcode.countdown === 0) {
+						clearInterval(interval);
+						this.sendcode.isButtonDisabled = false;
+					}
+				}, 1000);
 			}
 		}
 	}
@@ -281,7 +300,6 @@
 
 			.uni-input1,
 			.uni-input2,
-			.uni-input3,
 			.uni-input4,
 			.uni-input5 {
 				display: flex;
@@ -293,12 +311,34 @@
 				border-radius: 15px;
 			}
 
+			.uni-input3 {
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+				margin-top: 15px;
+				background-color: rgb(205, 222, 252);
+				width: 92%;
+				height: 50px;
+				border-radius: 15px;
+			}
+
 			.get-verification-code {
 				position: absolute;
+				width: 120px;
+				height: 50px;
 				font-size: 16px;
 				right: 7%;
-				padding: 5px 10px;
+				align-self: center;
 				border-radius: 15px;
+			}
+
+			.button-disabled {
+				background-color: rgb(220, 220, 220);
+				color: #000;
+				font-size: 18px;
+				padding-bottom: 15px;
+				/* 按钮禁用时的背景颜色 */
 			}
 
 			.forget-pin {
