@@ -43,10 +43,12 @@
 					</view>
 					<view class="uni-input3">
 						<input type="tel" style="margin-left: 7%;" placeholder="请输入您的手机号" v-model="user.phonenum" />
-						<button class="get-verification-code" :class="{ 'button-disabled': sendcode.isButtonDisabled}"
+						<view class="get-verification-code">
+							<button class="get-verification-code-button" :class="{ 'button-disabled': sendcode.isButtonDisabled}"
 							@tap="getVercode" :disabled="sendcode.isButtonDisabled">
 							{{ sendcode.countdown ? `${sendcode.countdown}` : '获取验证码' }}
 						</button>
+						</view>
 					</view>
 				</view>
 				<view class="verification-ensure">
@@ -215,7 +217,7 @@
 			},
 			startCountdown() {
 				this.sendcode.isButtonDisabled = true;
-				this.sendcode.countdown = 30; // 设置倒计时时间，例如 30 秒
+				this.sendcode.countdown = 60; // 设置倒计时时间，例如 30 秒
 				const interval = setInterval(() => {
 					this.sendcode.countdown--;
 					if (this.sendcode.countdown === 0) {
@@ -314,7 +316,6 @@
 			.uni-input3 {
 				display: flex;
 				flex-direction: row;
-				justify-content: center;
 				align-items: center;
 				margin-top: 15px;
 				background-color: rgb(205, 222, 252);
@@ -323,13 +324,21 @@
 				border-radius: 15px;
 			}
 
-			.get-verification-code {
-				position: absolute;
+            .get-verification-code{
+				flex-grow: 1;
+				display: flex;
+				align-items: center;
+				justify-content:center;
+			}
+			
+			.get-verification-code-button{
+				margin-right:0;
+				display: flex;
 				width: 120px;
 				height: 50px;
 				font-size: 16px;
-				right: 7%;
-				align-self: center;
+				align-items: center;
+				justify-content: center;
 				border-radius: 15px;
 			}
 
@@ -337,7 +346,6 @@
 				background-color: rgb(220, 220, 220);
 				color: #000;
 				font-size: 18px;
-				padding-bottom: 15px;
 				/* 按钮禁用时的背景颜色 */
 			}
 
