@@ -150,7 +150,7 @@
 					.catch(error => {
 						// 请求失败处理
 						uni.showToast({
-							title: '请求错误',
+							title: '请求错误' + response.data.message,
 							icon: 'none',
 							duration: 2000
 						});
@@ -200,7 +200,7 @@
 					} else {
 						// 如果不成功，也可以显示一个消息
 						uni.showToast({
-							title: '发送失败',
+							title: '发送失败,请重试',
 							icon: 'none',
 							duration: 2000
 						});
