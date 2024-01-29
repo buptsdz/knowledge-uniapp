@@ -26,19 +26,19 @@
 	<view style="display: flex;justify-content: center;">
 		<view class="four-button">
 			<view class="four-button-item">
-				<image class="four-button-item-img" src="../../static/image/logo/logo.png" mode=""></image>
+				<image class="four-button-item-img" src="../../static/image/resource/basepage-psycho.png" mode=""></image>
 				<text>心理</text>
 			</view>
 			<view class="four-button-item">
-				<image class="four-button-item-img" src="../../static/image/logo/logo.png" mode=""></image>
+				<image class="four-button-item-img" src="../../static/image/resource/basepage-paper.png" mode=""></image>
 				<text>随机组卷</text>
 			</view>
 			<view class="four-button-item">
-				<image class="four-button-item-img" src="../../static/image/logo/logo.png" mode=""></image>
+				<image class="four-button-item-img" src="../../static/image/resource/basepage-search.png" mode=""></image>
 				<text>题库检索</text>
 			</view>
 			<view class="four-button-item">
-				<image class="four-button-item-img" src="../../static/image/logo/logo.png" mode=""></image>
+				<image class="four-button-item-img" src="../../static/image/resource/basepage-analysis.png" mode=""></image>
 				<text>数据分析</text>
 			</view>
 		</view>
@@ -54,7 +54,7 @@
 		<view class="detail-section-item">
 			<view class="title">
 				<view class="title-start">
-					<image class="title-start-img" src="../../static/image/logo/logo.png" mode=""></image>
+					<image class="title-start-img" src="../../static/image/resource/basepage-swiper-1.png" mode=""></image>
 					<text class="title-start-text">学长学姐说</text>
 				</view>
 				<view class="title-end">
@@ -74,7 +74,7 @@
 		<view class="detail-section-item">
 			<view class="title">
 				<view class="title-start">
-					<image class="title-start-img" src="../../static/image/logo/logo.png" mode=""></image>
+					<image class="title-start-img" src="../../static/image/resource/basepage-swiper-2.png" mode=""></image>
 					<text class="title-start-text">小伙伴说</text>
 				</view>
 				<view class="title-end">
@@ -94,7 +94,7 @@
 		<view class="detail-section-item">
 			<view class="title">
 				<view class="title-start">
-					<image class="title-start-img" src="../../static/image/logo/logo.png" mode=""></image>
+					<image class="title-start-img" src="../../static/image/resource/basepage-swiper-3.png" mode=""></image>
 					<text class="title-start-text">趣味知识</text>
 				</view>
 				<view class="title-end">
@@ -311,14 +311,14 @@
 				align-items: center;
 
 				.title-start-img {
-					height: 25px;
-					width: 25px;
+					height: 23px;
+					width: 23px;
 					margin-right: 6px;
 				}
 
 				.title-start-text {
 					color: #2C2FAD;
-					font-size: 18px;
+					font-size: 19px;
 				}
 			}
 
