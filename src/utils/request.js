@@ -15,10 +15,10 @@ const service = axios.create({
 // http request 请求拦截器
 service.interceptors.request.use(
   config => {
-    // 这里判断localStorage里面是否存在token，如果有则在请求头里面设置
-    // if (localStorage.jwtToken) {
-    //   config.headers.token = getLocalStorage("jwtToken");
-    // }
+    //这里判断localStorage里面是否存在token，如果有则在请求头里面设置
+    if (localStorage.getItem("token")) {
+      config.headers.token =  localStorage.getItem("token");
+    }
     return config
   },
   err => {

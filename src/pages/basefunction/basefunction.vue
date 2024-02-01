@@ -12,8 +12,16 @@
 			<input class="search-input" type="text" placeholder="搜索内容" />
 		</view>
 		<view class="log-in">
-			<button class="log-in-button">登录</button>
+			<view v-if="isLoggedIn">
+				<!-- 如果已登录，显示用户头像 -->
+				<image class="log-in-avatar" :src="userAvatar" @tap="goToMine" mode="scaleToFill"></image>
+			</view>
+			<view v-else>
+				<!-- 如果未登录，显示登录按钮 -->
+				<button class="log-in-button" @tap="goToLogin">登录</button>
+			</view>
 		</view>
+
 	</view>
 	<view class="top-swiper-section">
 		<swiper class="swiper" indicator-color="white" indicator-active-color="#FFDE89" :indicator-dots="true"
@@ -26,19 +34,23 @@
 	<view style="display: flex;justify-content: center;">
 		<view class="four-button">
 			<view class="four-button-item">
-				<image class="four-button-item-img" src="../../static/image/resource/basepage-psycho.png" mode=""></image>
+				<image class="four-button-item-img" src="../../static/image/resource/basepage-psycho.png" mode="">
+				</image>
 				<text>心理</text>
 			</view>
 			<view class="four-button-item">
-				<image class="four-button-item-img" src="../../static/image/resource/basepage-paper.png" mode=""></image>
+				<image class="four-button-item-img" src="../../static/image/resource/basepage-paper.png" mode="">
+				</image>
 				<text>随机组卷</text>
 			</view>
 			<view class="four-button-item">
-				<image class="four-button-item-img" src="../../static/image/resource/basepage-search.png" mode=""></image>
+				<image class="four-button-item-img" src="../../static/image/resource/basepage-search.png" mode="">
+				</image>
 				<text>题库检索</text>
 			</view>
 			<view class="four-button-item">
-				<image class="four-button-item-img" src="../../static/image/resource/basepage-analysis.png" mode=""></image>
+				<image class="four-button-item-img" src="../../static/image/resource/basepage-analysis.png" mode="">
+				</image>
 				<text>数据分析</text>
 			</view>
 		</view>
@@ -54,7 +66,8 @@
 		<view class="detail-section-item">
 			<view class="title">
 				<view class="title-start">
-					<image class="title-start-img" src="../../static/image/resource/basepage-swiper-1.png" mode=""></image>
+					<image class="title-start-img" src="../../static/image/resource/basepage-swiper-1.png" mode="">
+					</image>
 					<text class="title-start-text">学长学姐说</text>
 				</view>
 				<view class="title-end">
@@ -74,7 +87,8 @@
 		<view class="detail-section-item">
 			<view class="title">
 				<view class="title-start">
-					<image class="title-start-img" src="../../static/image/resource/basepage-swiper-2.png" mode=""></image>
+					<image class="title-start-img" src="../../static/image/resource/basepage-swiper-2.png" mode="">
+					</image>
 					<text class="title-start-text">小伙伴说</text>
 				</view>
 				<view class="title-end">
@@ -94,7 +108,8 @@
 		<view class="detail-section-item">
 			<view class="title">
 				<view class="title-start">
-					<image class="title-start-img" src="../../static/image/resource/basepage-swiper-3.png" mode=""></image>
+					<image class="title-start-img" src="../../static/image/resource/basepage-swiper-3.png" mode="">
+					</image>
 					<text class="title-start-text">趣味知识</text>
 				</view>
 				<view class="title-end">
@@ -117,6 +132,8 @@
 	export default {
 		data() {
 			return {
+				isLoggedIn: false,
+				userAvatar: '', // 用户头像地址
 				topUrlList: [
 					"../../static/image/logo/logo.png",
 					"../../static/image/resource/basepage-top.png",
@@ -143,11 +160,51 @@
 		},
 		onLoad() {
 			var token = localStorage.getItem("token");
-			console.log(token);
+			console.log("token：", token);
+		},
+		onShow() {
+			this.checkLoginStatus();
 		},
 		methods: {
-
-		}
+			// 检查登录状态
+			checkLoginStatus() {
+				var token = localStorage.getItem("token");
+				getApp().globalData.isLoggedIn = token !== null && token !== "0"; // 当token不为null且不为"0"时设置为已登录状态
+				var state=getApp().globalData.isLoggedIn;
+				console.log("登录状态：", state);
+				this.isLoggedIn = state;
+				if (this.isLoggedIn) {
+					this.getUserInfo();
+				}
+			},
+			// 获取用户信息
+			getUserInfo() {
+				this.$service.get("/user-service/api/user")
+					.then(response => {
+						// 处理成功响应
+						console.log("用户信息：",response);
+						if (response.data.isSuccess == 1) {
+							this.userAvatar = response.data.data.headImg;
+							console.log("头像地址：",this.userAvatar)
+						}
+					})
+					.catch(error => {
+						// 处理错误
+						console.error('请求出错', error);
+					});
+			},
+			goToMine() {
+				uni.switchTab({
+					url: "../mine/mine"
+				})
+			},
+			// 未登录状态点击头像跳转到登录页面
+			goToLogin() {
+				uni.navigateTo({
+					url: "../index_login/index_login",
+				})
+			},
+		},
 	}
 </script>
 
@@ -220,6 +277,15 @@
 				width: 34px;
 				font-size: 12px;
 				white-space: nowrap;
+			}
+
+			.log-in-avatar {
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: 34px;
+				width: 34px;
 			}
 		}
 	}
@@ -344,7 +410,7 @@
 
 	.detail-section-item .swiper-list {
 		width: 100%;
-		height:105px;
+		height: 105px;
 
 		.swiper-list-item {
 			margin-top: 8px;

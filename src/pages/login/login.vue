@@ -83,8 +83,9 @@
 			}
 		},
 		onLoad() {
-			var token = localStorage.getItem("token");
-			console.log("token:",token);
+			//检查是否有token
+			// var token = localStorage.getItem("token");
+			// console.log("token:",token);
 		},
 		methods: {
 			test() {
@@ -109,7 +110,7 @@
 					})
 					.then((res) => {
 						// 检查响应中的issuccess字段
-						console.log(res);
+						console.log("登录成功：",res);
 						if (res.data.isSuccess==1) {
 							// 请求成功且服务器返回成功状态
 							var token = res.data.data.token; // 读取token
@@ -118,7 +119,7 @@
 							uni.showToast({
 								title: "登录成功！",
 								icon: "success",
-							})
+							});
 							// 跳转到首页
 							this.$router.push("../basefunction/basefunction");
 						} else {
