@@ -14,13 +14,14 @@
 		methods: {
 			logout() {
 				// 清除本地缓存中的token
-				localStorage.removeItem("token");
+				uni.removeStorageSync("token");
 				console.log("已退出登录");
 				uni.showToast({
 					title: "已退出登录",
 					icon: "success",
 					duration: 2000
-				})
+				}),
+				console.log("token:",uni.getStorageSync("token"));
 			},
 		}
 	}

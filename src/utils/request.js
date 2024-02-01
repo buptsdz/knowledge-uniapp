@@ -16,8 +16,8 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     //这里判断localStorage里面是否存在token，如果有则在请求头里面设置
-    if (localStorage.getItem("token")) {
-      config.headers.token =  localStorage.getItem("token");
+    if (uni.getStorageSync("token")) {
+      config.headers.token =  uni.getStorageSync("token");
     }
     return config
   },

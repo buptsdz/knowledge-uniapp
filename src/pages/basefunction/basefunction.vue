@@ -133,7 +133,7 @@
 		data() {
 			return {
 				isLoggedIn: false,
-				userAvatar: '', // 用户头像地址
+				userAvatar: '../../static/image/resource/basepage-defaultAvatar.png', // 默认用户头像地址
 				topUrlList: [
 					"../../static/image/logo/logo.png",
 					"../../static/image/resource/basepage-top.png",
@@ -159,7 +159,7 @@
 			}
 		},
 		onLoad() {
-			var token = localStorage.getItem("token");
+			var token = uni.getStorageSync("token");
 			console.log("token：", token);
 		},
 		onShow() {
@@ -168,8 +168,10 @@
 		methods: {
 			// 检查登录状态
 			checkLoginStatus() {
-				var token = localStorage.getItem("token");
-				getApp().globalData.isLoggedIn = token !== null && token !== "0"; // 当token不为null且不为"0"时设置为已登录状态
+				var token = uni.getStorageSync("token");
+				// console.log("token:",token);
+				// console.log(typeof token);
+				getApp().globalData.isLoggedIn = token !== null && token.length!==0; 
 				var state=getApp().globalData.isLoggedIn;
 				console.log("登录状态：", state);
 				this.isLoggedIn = state;

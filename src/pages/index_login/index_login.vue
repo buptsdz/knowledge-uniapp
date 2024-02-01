@@ -17,11 +17,11 @@
 					</button>
 				</view>
 				<view class="sign-in-phonenum">
-					<button class="phonenum-in" @tap="goTo2()">手机号登录</button>
+					<button class="phonenum-in" @tap="goLogin1()">手机号登录</button>
 				</view>
 			</view>
 			<view class="sign-in-account">
-				<text @tap="goLogin_account()">账号密码登录</text>
+				<text @tap="goLogin1()">账号密码登录</text>
 			</view>
 			<view class=" otherway-sign-in">
 				<view class="split-line">
@@ -63,16 +63,17 @@
 			}
 		},
 		onLoad() {
-			var token = localStorage.getItem("token");
+			var token = uni.getStorageSync("token");
 			console.log("token:",token);
 		},
 		methods: {
+			//检查是否勾选协议
 			xieyiConfirm() {
 				this.xieyichecked = !this.xieyichecked;
 				console.log(this.xieyichecked);
 			},
-			goLogin_account() {
-				console.log("到登录页面")
+			goLogin1() {
+				console.log("到登录页面1")
 				uni.navigateTo({
 					url: "../login/login",
 				});

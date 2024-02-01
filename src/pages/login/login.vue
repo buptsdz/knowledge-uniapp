@@ -21,7 +21,8 @@
 						手机号
 					</view>
 					<view class="uni-input1">
-						<input type="text" style="margin-left: 7%;" placeholder="请输入您的手机号或用户名" v-model="user.usernameOrPhone" />
+						<input type="text" style="margin-left: 7%;" placeholder="请输入您的手机号或用户名"
+							v-model="user.usernameOrPhone" />
 					</view>
 				</view>
 				<view class="pin-code">
@@ -29,41 +30,42 @@
 						密码
 					</view>
 					<view class="uni-input2">
-						<input type="safe-password" style="margin-left: 7%;" focus placeholder="请输入您的密码"
+						<input :password="!passwordVisible" style="margin-left: 7%;" focus placeholder="请输入您的密码"
 							v-model="user.password" />
-						<view style="flex-grow: 1;display: flex;justify-content: flex-end;">
-							<image style="height: 18px;width: 18px;right: 20%;"
-								src="../../static/image/symple/pin-visualable.png" mode="aspectFit"></image>
+						<view style="flex-grow: 1; display: flex; justify-content: flex-end;">
+							<image style="height: 18px; width: 18px; right: 20%;" @tap="togglePasswordVisibility"
+								:src="passwordVisible ? '../../static/image/symple/pin-visible.png' : '../../static/image/symple/pin-invisible.png'"
+								mode="aspectFit"></image>
 						</view>
 					</view>
+					<view class="forget-pin" @tap="goTo()">忘记密码?</view>
 				</view>
-				<view class="forget-pin" @tap="goTo()">忘记密码?</view>
-			</view>
-			<view class="button-section">
-				<view class="sign-in">
-					<button class="bt-sign-in" @tap="onSubmit">登录</button>
-				</view>
-				<view class="sign-up">
-					<button class="bt-sign-up" @tap="goTores()">注册</button>
-				</view>
-			</view>
-			<view class=" otherway-sign-in">
-				<view class="other-way">
-					<view class="other-way-img">
-						<image style="height: 25px;width: 25px;" src="../../static/image/logo/wx-logo-raw.png"
-							mode="aspectFit"></image>
+				<view class="button-section">
+					<view class="sign-in">
+						<button class="bt-sign-in" @tap="onSubmit">登录</button>
 					</view>
-					<view class="other-way-img">
-						<image style="height: 24px;width: 24px;" src="../../static/image/logo/qq-logo-raw.png"
-							mode="aspectFit"></image>
-					</view>
-					<view class="other-way-img">
-						<image style="height: 22px;width: 22px;margin-top: -5px;"
-							src="../../static/image/logo/apple-logo-raw.png" mode="aspectFit"></image>
+					<view class="sign-up">
+						<button class="bt-sign-up" @tap="goTores()">注册</button>
 					</view>
 				</view>
-				<view class="split-line">
-					— 其他登录方式 —
+				<view class=" otherway-sign-in">
+					<view class="other-way">
+						<view class="other-way-img">
+							<image style="height: 25px;width: 25px;" src="../../static/image/logo/wx-logo-raw.png"
+								mode="aspectFit"></image>
+						</view>
+						<view class="other-way-img">
+							<image style="height: 24px;width: 24px;" src="../../static/image/logo/qq-logo-raw.png"
+								mode="aspectFit"></image>
+						</view>
+						<view class="other-way-img">
+							<image style="height: 22px;width: 22px;margin-top: -5px;"
+								src="../../static/image/logo/apple-logo-raw.png" mode="aspectFit"></image>
+						</view>
+					</view>
+					<view class="split-line">
+						— 其他登录方式 —
+					</view>
 				</view>
 			</view>
 		</view>
@@ -74,22 +76,26 @@
 	export default {
 		data() {
 			return {
-				user:{
+				user: {
 					//测试号码17315718923,用户名11,密码11
 					//15805293579,用户名sdzsdzsdz2,密码12345678
-					usernameOrPhone: "", 
-				    password: "", 
-				}
+					usernameOrPhone: "",
+					password: "",
+				},
+				passwordVisible: false, //密码是否可见
 			}
 		},
 		onLoad() {
 			//检查是否有token
 			// var token = localStorage.getItem("token");
 			// console.log("token:",token);
+			console.log("密码状态", this.passwordVisible);
 		},
 		methods: {
-			test() {
-				console.log(this.user.usernameOrPhone, this.user.password);
+			//设置密码可见状态
+			togglePasswordVisibility() {
+				this.passwordVisible = !this.passwordVisible;
+				console.log("密码状态", this.passwordVisible);
 			},
 			async onSubmit(values) {
 				//点击登录
@@ -110,11 +116,11 @@
 					})
 					.then((res) => {
 						// 检查响应中的issuccess字段
-						console.log("登录成功：",res);
-						if (res.data.isSuccess==1) {
+						console.log("登录信息：", res);
+						if (res.data.isSuccess == 1) {
 							// 请求成功且服务器返回成功状态
 							var token = res.data.data.token; // 读取token
-							localStorage.setItem("token", token); // 保存token
+							uni.setStorageSync("token", token); // 保存token
 							// 登录成功的提示
 							uni.showToast({
 								title: "登录成功！",
@@ -279,6 +285,7 @@
 			position: relative;
 
 			.split-line {
+				margin-top: 15px;
 				color: rgb(90, 90, 90);
 				margin-bottom: 15px;
 			}

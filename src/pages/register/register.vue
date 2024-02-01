@@ -29,11 +29,12 @@
 						密码
 					</view>
 					<view class="uni-input2">
-						<input type="safe-password" style="margin-left: 7%;" placeholder="请输入您的密码"
+						<input :password="!passwordVisible" style="margin-left: 7%;" placeholder="请输入您的密码"
 							v-model="user.password" />
 						<view style="flex-grow: 1;display: flex;justify-content: flex-end;">
 							<image style="height: 18px;width: 18px;right: 20%;"
-								src="../../static/image/symple/pin-visualable.png" mode="aspectFit"></image>
+								:src="passwordVisible ? '../../static/image/symple/pin-visible.png' : '../../static/image/symple/pin-invisible.png'"
+								mode="aspectFit" @tap="togglePasswordVisibility"></image>
 						</view>
 					</view>
 				</view>
@@ -44,10 +45,11 @@
 					<view class="uni-input3">
 						<input type="tel" style="margin-left: 7%;" placeholder="请输入您的手机号" v-model="user.phonenum" />
 						<view class="get-verification-code">
-							<button class="get-verification-code-button" :class="{ 'button-disabled': sendcode.isButtonDisabled}"
-							@tap="getVercode" :disabled="sendcode.isButtonDisabled">
-							{{ sendcode.countdown ? `${sendcode.countdown}` : '获取验证码' }}
-						</button>
+							<button class="get-verification-code-button"
+								:class="{ 'button-disabled': sendcode.isButtonDisabled}" @tap="getVercode"
+								:disabled="sendcode.isButtonDisabled">
+								{{ sendcode.countdown ? `${sendcode.countdown}` : '获取验证码' }}
+							</button>
 						</view>
 					</view>
 				</view>
@@ -100,10 +102,16 @@
 				sendcode: {
 					isButtonDisabled: false,
 					countdown: 0,
-				}
+				},
+				passwordVisible: false,
 			}
 		},
 		methods: {
+			//设置密码可见状态
+			togglePasswordVisibility() {
+				this.passwordVisible = !this.passwordVisible;
+				console.log("密码状态", this.passwordVisible);
+			},
 			registOnSubmit() {
 				// 请求数据
 				const requestData = {
@@ -215,6 +223,7 @@
 					});
 				}
 			},
+			//发送验证码间隔
 			startCountdown() {
 				this.sendcode.isButtonDisabled = true;
 				this.sendcode.countdown = 60; // 设置倒计时时间，例如 30 秒
@@ -324,15 +333,15 @@
 				border-radius: 15px;
 			}
 
-            .get-verification-code{
+			.get-verification-code {
 				flex-grow: 1;
 				display: flex;
 				align-items: center;
-				justify-content:center;
+				justify-content: center;
 			}
-			
-			.get-verification-code-button{
-				margin-right:0;
+
+			.get-verification-code-button {
+				margin-right: 0;
 				display: flex;
 				width: 120px;
 				height: 50px;
