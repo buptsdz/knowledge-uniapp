@@ -1,11 +1,10 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path" : "pages/basefunction/basefunction",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
+			"path": "pages/basefunction/basefunction",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
 				"navigationStyle": "custom",
 				"app-plus": {
 					"titleView": false
@@ -23,11 +22,10 @@
 			}
 		},
 		{
-			"path" : "pages/login/login",
-			"style" : 
-			{
-				"navigationBarTitleText" : "login",
-				"enablePullDownRefresh" : false,
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "login",
+				"enablePullDownRefresh": false,
 				"navigationStyle": "custom",
 				"app-plus": {
 					"titleView": false
@@ -35,48 +33,44 @@
 			}
 		},
 		{
-			"path" : "pages/register/register",
-			"style" : 
-			{
-				"navigationBarTitleText" : "signup",
-				"enablePullDownRefresh" : false,
+			"path": "pages/register/register",
+			"style": {
+				"navigationBarTitleText": "signup",
+				"enablePullDownRefresh": false,
 				"navigationStyle": "custom",
 				"app-plus": {
 					"titleView": false
 				}
-				
+
 			}
 		},
 		{
-			"path" : "pages/schoolcicle/schoolcicle",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false
+			"path": "pages/schoolcicle/schoolcicle",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
 			}
 		},
 		{
-			"path" : "pages/pertifunction/pertifunction",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false
+			"path": "pages/pertifunction/pertifunction",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
 			}
 		},
 		{
-			"path" : "pages/mine/mine",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false
+			"path": "pages/mine/mine",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
 			}
 		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"navigationBarBackgroundColor": "rgba(229, 237, 248, 1)",
+		"backgroundColor": "rgba(229, 237, 248, 1)"
 	},
 	"tabBar": {
 		"color": "white",

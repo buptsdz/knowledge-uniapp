@@ -127,6 +127,7 @@
 								icon: "success",
 							});
 							// 跳转到首页
+							this.getUserInfo();
 							this.$router.push("../basefunction/basefunction");
 						} else {
 							// 服务器返回失败状态
@@ -146,6 +147,28 @@
 							duration: 2000
 						});
 					});
+			},
+			// 获取用户信息
+			async getUserInfo() {
+				try {
+					// 使用await等待异步请求的结果
+					const response = await this.$service.get("/user-service/api/user");
+					// 处理成功响应
+					console.log("响应信息：", response);
+					if (response.data.isSuccess == 1) {
+						// 直接使用响应数据
+						const userdata = response.data.data;
+
+						// 使用uni.setStorageSync同步地保存userdata到本地存储
+						uni.setStorageSync('userdata', JSON.stringify(userdata));
+
+						// 打印头像地址用于验证
+						console.log("用户信息", userdata);
+					}
+				} catch (error) {
+					// 处理请求错误
+					console.error('请求出错', error);
+				}
 			},
 			goTores() {
 				console.log("到注册页面");

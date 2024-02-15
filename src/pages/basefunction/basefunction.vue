@@ -171,29 +171,47 @@
 				var token = uni.getStorageSync("token");
 				// console.log("token:",token);
 				// console.log(typeof token);
-				getApp().globalData.isLoggedIn = token !== null && token.length!==0; 
-				var state=getApp().globalData.isLoggedIn;
+				getApp().globalData.isLoggedIn = token !== null && token.length !== 0;
+				var state = getApp().globalData.isLoggedIn;
 				console.log("登录状态：", state);
 				this.isLoggedIn = state;
 				if (this.isLoggedIn) {
 					this.getUserInfo();
+				} else {
+					return;
 				}
 			},
 			// 获取用户信息
 			getUserInfo() {
-				this.$service.get("/user-service/api/user")
-					.then(response => {
-						// 处理成功响应
-						console.log("用户信息：",response);
-						if (response.data.isSuccess == 1) {
-							this.userAvatar = response.data.data.headImg;
-							console.log("头像地址：",this.userAvatar)
-						}
-					})
-					.catch(error => {
-						// 处理错误
-						console.error('请求出错', error);
-					});
+				var userdataStr = uni.getStorageSync('userdata');
+				if (userdataStr) {
+					// 将字符串转换回对象
+					var userdata = JSON.parse(userdataStr);
+
+					// 检查头像（headImg）是否存在且不为空
+					if (userdata.headImg) {
+						this.userAvatar=userdata.headImg;
+						console.log("头像地址：", userdata.headImg);
+					} else {
+						console.log("头像地址不存在");
+						//设置一个默认头像等
+						this.userAvatar="../../static/image/resource/basepage-defaultAvatar.png";
+					}
+				} else {
+					this.$service.get("/user-service/api/user")
+						.then(response => {
+							// 处理成功响应
+							console.log("用户信息：", response);
+							if (response.data.isSuccess == 1) {
+								this.userAvatar = response.data.data.headImg;
+								console.log("头像地址：", this.userAvatar)
+							}
+						})
+						.catch(error => {
+							// 处理错误
+							console.error('请求出错', error);
+						});
+				}
 			},
 			goToMine() {
 				uni.switchTab({
