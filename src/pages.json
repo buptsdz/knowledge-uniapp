@@ -47,8 +47,12 @@
 		{
 			"path": "pages/schoolcicle/schoolcicle",
 			"style": {
-				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false
+				"navigationBarTitleText": "schoolcicle",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom",
+				"app-plus": {
+					"titleView": false
+				}
 			}
 		},
 		{

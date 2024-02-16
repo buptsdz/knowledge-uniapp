@@ -87,7 +87,7 @@
 		},
 		onLoad() {
 			//检查是否有token
-			// var token = localStorage.getItem("token");
+			// var token = uni.getStorageSync("token");
 			// console.log("token:",token);
 			console.log("密码状态", this.passwordVisible);
 		},

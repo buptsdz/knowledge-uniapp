@@ -30,7 +30,12 @@
 	body {
 		font-family: 'SourceHanSansCN', sans-serif;
 	}
+
 	uni-modal {
-	  z-index: 99999 !important;
+		z-index: 99999 !important;
+	}
+
+	uni-toast {
+		z-index: 99999 !important;
 	}
 </style>
