@@ -135,7 +135,7 @@
 					return;
 				}
 				// 发送 POST 请求
-				this.$service.post('/user-service/api/auth/register', requestData)
+				this.$service.post('user-service/api/auth/register', requestData)
 					.then(response => {
 						// 请求成功处理
 						if (response.data.isSuccess == 1) {
@@ -193,7 +193,11 @@
 						});
 						return;
 					}
-					const response = await this.$service.post('/user-service/api/auth/sms', {
+					uni.showLoading({
+						title: "加载中",
+						mask: true
+					});
+					const response = await this.$service.post('user-service/api/auth/sms', {
 						phone: this.user.phonenum
 					});
 					// 检查响应是否表示操作成功
@@ -219,8 +223,11 @@
 					uni.showToast({
 						title: '请求出错',
 						icon: 'none',
-						duration: 2000
+						duration: 2400
 					});
+				} finally {
+					// 无论请求成功还是失败，最终都会执行这里，关闭loading
+					uni.hideLoading();
 				}
 			},
 			//发送验证码间隔

@@ -198,7 +198,7 @@
 						this.userAvatar="../../static/image/resource/basepage-defaultAvatar.png";
 					}
 				} else {
-					this.$service.get("/user-service/api/user")
+					this.$service.get("user-service/api/user")
 						.then(response => {
 							// 处理成功响应
 							console.log("用户信息：", response);
