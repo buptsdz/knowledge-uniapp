@@ -73,6 +73,7 @@
 </template>
 
 <script>
+	import store from '@/store/index.js'
 	export default {
 		data() {
 			return {
@@ -120,7 +121,8 @@
 						if (res.data.isSuccess == 1) {
 							// 请求成功且服务器返回成功状态
 							var token = res.data.data.token; // 读取token
-							uni.setStorageSync("token", token); // 保存token
+							store.commit('setToken',token);//保存token到vuex
+							store.commit("setLoggedIn");
 							// 登录成功的提示
 							uni.showToast({
 								title: "登录成功！",
@@ -152,18 +154,19 @@
 			async getUserInfo() {
 				try {
 					// 使用await等待异步请求的结果
-					const response = await this.$service.get("/user-service/api/user");
+					const response = await this.$service.get("user-service/api/user");
 					// 处理成功响应
 					console.log("响应信息：", response);
 					if (response.data.isSuccess == 1) {
 						// 直接使用响应数据
 						const userdata = response.data.data;
-
-						// 使用uni.setStorageSync同步地保存userdata到本地存储
-						uni.setStorageSync('userdata', JSON.stringify(userdata));
-
-						// 打印头像地址用于验证
-						console.log("用户信息", userdata);
+						console.log(typeof userdata);
+						store.commit("login",userdata);
+						store.commit("setLoggedIn");
+						// // 使用uni.setStorageSync同步地保存userdata到本地存储
+						// uni.setStorageSync('userdata', JSON.stringify(userdata));
+						// // 打印头像地址用于验证
+						// console.log("用户信息", userdata);
 					}
 				} catch (error) {
 					// 处理请求错误

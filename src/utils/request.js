@@ -1,5 +1,6 @@
 // 导入axios
 import axios from 'axios'
+import store from '@/store/index.js'
 const url_all = {
 	'DEV': 'http://127.0.0.1:280/', //本地开发
 	'TEST': 'http://www.liuchen.work:280/', // 测试
@@ -19,8 +20,9 @@ const service = axios.create({
 service.interceptors.request.use(
 	config => {
 		//这里判断localStorage里面是否存在token，如果有则在请求头里面设置
-		if (uni.getStorageSync("token")) {
-			config.headers.token = uni.getStorageSync("token");
+		var token = store.state.token;
+		if (token) {
+			config.headers.token = token;
 		}
 		return config
 	},

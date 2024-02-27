@@ -3,7 +3,7 @@
 		<image style="width:100%;height: 270px;" src="../../static/image/background/bg-basefunction-top.png"
 			mode="scaleToFill"></image>
 	</view>
-	<topSearchAndLogin :loginInfo="loginInfo"></topSearchAndLogin>
+	<topSearchAndLogin ref="top"></topSearchAndLogin>
 	<view class="top-swiper-section">
 		<swiper class="swiper" indicator-color="white" indicator-active-color="#FFDE89" :indicator-dots="true"
 			:autoplay="true" :interval="3000" :duration="1000" :circular="true">
@@ -110,14 +110,18 @@
 </template>
 
 <script>
+	import topSearchAndLogin from "../topSearchAndLogin/topSearchAndLogin.vue"
 	export default {
+		components: {
+			topSearchAndLogin,
+		},
 		data() {
 			return {
 				//传到顶部子组件的数据
-				loginInfo: {
-					isLoggedIn: false,
-					userAvatar: '../../static/image/resource/basepage-defaultAvatar.png', // 默认用户头像地址
-				},
+				// loginInfo: {
+				// 	isLoggedIn: false,
+				// 	userAvatar: '../../static/image/resource/basepage-defaultAvatar.png', // 默认用户头像地址
+				// },
 				//顶部滑动大图数据
 				topUrlList: [
 					"../../static/image/logo/logo.png",
@@ -143,61 +147,14 @@
 				]
 			}
 		},
-		onLoad() {
-			var token = uni.getStorageSync("token");
-			console.log("token：", token);
-		},
+		// onLoad() {
+		// 	var token = this.$store.state.token;
+		// 	console.log("token：", token);
+		// },
 		onShow() {
-			this.checkLoginStatus();
 		},
 		methods: {
-			// 检查登录状态
-			checkLoginStatus() {
-				var token = uni.getStorageSync("token");
-				// console.log("token:",token);
-				// console.log(typeof token);
-				getApp().globalData.isLoggedIn = token !== null && token.length !== 0;
-				var state = getApp().globalData.isLoggedIn;
-				console.log("登录状态：", state);
-				this.loginInfo.isLoggedIn = state;
-				if (this.loginInfo.isLoggedIn) {
-					this.getUserInfo();
-				} else {
-					return;
-				}
-			},
-			// 获取用户信息
-			getUserInfo() {
-				var userdataStr = uni.getStorageSync('userdata');
-				if (userdataStr) {
-					// 将字符串转换回对象
-					var userdata = JSON.parse(userdataStr);
 
-					// 检查头像（headImg）是否存在且不为空
-					if (userdata.headImg) {
-						this.loginInfo.userAvatar = userdata.headImg;
-						console.log("头像地址：", userdata.headImg);
-					} else {
-						console.log("头像地址不存在");
-						//设置一个默认头像等
-						this.loginInfo.userAvatar = "../../static/image/resource/basepage-defaultAvatar.png";
-					}
-				} else {
-					this.$service.get("user-service/api/user")
-						.then(response => {
-							// 处理成功响应
-							console.log("用户信息：", response);
-							if (response.data.isSuccess == 1) {
-								this.loginInfo.userAvatar = response.data.data.headImg;
-								console.log("头像地址：", this.loginInfo.userAvatar)
-							}
-						})
-						.catch(error => {
-							// 处理错误
-							console.error('请求出错', error);
-						});
-				}
-			},
 		},
 	}
 </script>

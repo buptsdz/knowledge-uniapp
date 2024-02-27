@@ -8,9 +8,9 @@
 			<input class="search-input" type="text" placeholder="搜索内容" />
 		</view>
 		<view class="log-in">
-			<view v-if="loginInfo.isLoggedIn">
+			<view v-if="isLoggedIn">
 				<!-- 如果已登录，显示用户头像 -->
-				<image class="log-in-avatar" :src="loginInfo.userAvatar" @tap="goToMine" mode="scaleToFill"></image>
+				<image class="log-in-avatar" :src="userAvatar ? userAvatar : defaultAvatarUrl" @tap="goToMine" mode="scaleToFill"></image>
 			</view>
 			<view v-else>
 				<!-- 如果未登录，显示登录按钮 -->
@@ -21,13 +21,21 @@
 </template>
 
 <script>
+	import store from '@/store/index.js'
+	import {
+		mapState
+	} from 'vuex';
 	export default {
-		props: ["loginInfo"],
 		data() {
 			return {
-
+				defaultAvatarUrl:"../../static/image/resource/basepage-defaultAvatar.png"
 			}
 		},
+		computed: mapState({
+			// 从state中拿到数据 箭头函数可使代码更简练
+			isLoggedIn: state => state.isLoggedIn,
+			userAvatar: state => state.userdata.headImg,
+		}),
 		methods: {
 			goToMine() {
 				uni.switchTab({

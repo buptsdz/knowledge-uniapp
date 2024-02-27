@@ -1,10 +1,11 @@
 <template>
 	<view>
-		<button @tap="logout">退出登录</button>
+		<button @tap="logOut">退出登录</button>
 	</view>
 </template>
 
 <script>
+	import store from '@/store/index.js'
 	export default {
 		data() {
 			return {
@@ -12,18 +13,14 @@
 			}
 		},
 		methods: {
-			logout() {
+			logOut() {
+				store.commit("logout");
 				// 清除本地缓存中的token
-				uni.removeStorageSync("token");
-				uni.removeStorageSync("userdata");
-				console.log("已退出登录");
 				uni.showToast({
 					title: "已退出登录",
 					icon: "success",
 					duration: 2000
-				}),
-				console.log("token:",typeof uni.getStorageSync("token"),uni.getStorageSync("token"));
-				console.log("userdata",typeof uni.getStorageSync("userdata"),uni.getStorageSync("userdata"))
+				})
 			},
 		}
 	}
