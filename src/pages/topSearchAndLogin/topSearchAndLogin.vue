@@ -21,14 +21,25 @@
 </template>
 
 <script>
+	import store from '@/store/index.js'
 	export default {
-		props: ["loginInfo"],
 		data() {
 			return {
-
+				loginInfo: {
+					'isLoggedIn': false,
+					'userAvatar': '',
+				}
 			}
 		},
 		methods: {
+			show() {
+				console.log('top组件更新');
+				if (this.$store.state.userdata.headImg) {
+					this.loginInfo.userAvatar = this.$store.state.userdata.headImg;
+				} else {
+					this.loginInfo.userAvatar = '../../static/image/resource/basepage-defaultAvatar.png';
+				}
+			},
 			goToMine() {
 				uni.switchTab({
 					url: "/pages/mine/mine"

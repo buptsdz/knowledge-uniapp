@@ -447,7 +447,8 @@ export default {
         //点击发布时的验证逻辑
         verification() {
             //检查是否已登录
-            const token = uni.getStorageSync("token");
+            //const token = uni.getStorageSync("token");
+			const token = this.$store.state.token;
             if (token == null || token.length == 0) {
                 uni.showToast({
                     title: "请先登录",

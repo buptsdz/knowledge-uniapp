@@ -70,11 +70,11 @@
 			}
 		},
 		{
-			"path" : "components/topSearchAndLogin/topSearchAndLogin",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false
+			"path": "pages/topSearchAndLogin/topSearchAndLogin",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"navigationStyle" : "custom"
 			}
 		}
 	],

@@ -55,6 +55,7 @@
 </template>
 
 <script>
+	import store from '@/store/index.js'
 	export default {
 		data() {
 			return {
@@ -63,7 +64,7 @@
 			}
 		},
 		onLoad() {
-			var token = uni.getStorageSync("token");
+			var token = this.$store.state.token;
 			console.log("token:",token);
 		},
 		methods: {
