@@ -162,9 +162,9 @@
 						const userdata = response.data.data;
 						console.log(typeof userdata);
 						store.commit("login",userdata);
+						store.commit("setLoggedIn");
 						// // 使用uni.setStorageSync同步地保存userdata到本地存储
 						// uni.setStorageSync('userdata', JSON.stringify(userdata));
-
 						// // 打印头像地址用于验证
 						// console.log("用户信息", userdata);
 					}

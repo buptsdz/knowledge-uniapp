@@ -152,14 +152,9 @@
 		// 	console.log("token：", token);
 		// },
 		onShow() {
-			this.checkLoginStatus();
 		},
 		methods: {
-			checkLoginStatus() {
-				this.$nextTick(() => {
-					this.$refs.top.show();
-				});
-			}
+
 		},
 	}
 </script>
