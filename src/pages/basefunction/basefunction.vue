@@ -3,26 +3,7 @@
 		<image style="width:100%;height: 270px;" src="../../static/image/background/bg-basefunction-top.png"
 			mode="scaleToFill"></image>
 	</view>
-	<view class="top-tab">
-		<view class="attendance">
-			<button class="attendance-button">签到打卡</button>
-		</view>
-		<view class="search">
-			<image class="search-img" src="../../static/image/symple/search-blue.png" mode="aspectFit"></image>
-			<input class="search-input" type="text" placeholder="搜索内容" />
-		</view>
-		<view class="log-in">
-			<view v-if="isLoggedIn">
-				<!-- 如果已登录，显示用户头像 -->
-				<image class="log-in-avatar" :src="userAvatar" @tap="goToMine" mode="scaleToFill"></image>
-			</view>
-			<view v-else>
-				<!-- 如果未登录，显示登录按钮 -->
-				<button class="log-in-button" @tap="goToLogin">登录</button>
-			</view>
-		</view>
-
-	</view>
+	<topSearchAndLogin :loginInfo="loginInfo"></topSearchAndLogin>
 	<view class="top-swiper-section">
 		<swiper class="swiper" indicator-color="white" indicator-active-color="#FFDE89" :indicator-dots="true"
 			:autoplay="true" :interval="3000" :duration="1000" :circular="true">
@@ -132,8 +113,12 @@
 	export default {
 		data() {
 			return {
-				isLoggedIn: false,
-				userAvatar: '../../static/image/resource/basepage-defaultAvatar.png', // 默认用户头像地址
+				//传到顶部子组件的数据
+				loginInfo: {
+					isLoggedIn: false,
+					userAvatar: '../../static/image/resource/basepage-defaultAvatar.png', // 默认用户头像地址
+				},
+				//顶部滑动大图数据
 				topUrlList: [
 					"../../static/image/logo/logo.png",
 					"../../static/image/resource/basepage-top.png",
@@ -174,8 +159,8 @@
 				getApp().globalData.isLoggedIn = token !== null && token.length !== 0;
 				var state = getApp().globalData.isLoggedIn;
 				console.log("登录状态：", state);
-				this.isLoggedIn = state;
-				if (this.isLoggedIn) {
+				this.loginInfo.isLoggedIn = state;
+				if (this.loginInfo.isLoggedIn) {
 					this.getUserInfo();
 				} else {
 					return;
@@ -190,12 +175,12 @@
 
 					// 检查头像（headImg）是否存在且不为空
 					if (userdata.headImg) {
-						this.userAvatar=userdata.headImg;
+						this.loginInfo.userAvatar = userdata.headImg;
 						console.log("头像地址：", userdata.headImg);
 					} else {
 						console.log("头像地址不存在");
 						//设置一个默认头像等
-						this.userAvatar="../../static/image/resource/basepage-defaultAvatar.png";
+						this.loginInfo.userAvatar = "../../static/image/resource/basepage-defaultAvatar.png";
 					}
 				} else {
 					this.$service.get("user-service/api/user")
@@ -203,8 +188,8 @@
 							// 处理成功响应
 							console.log("用户信息：", response);
 							if (response.data.isSuccess == 1) {
-								this.userAvatar = response.data.data.headImg;
-								console.log("头像地址：", this.userAvatar)
+								this.loginInfo.userAvatar = response.data.data.headImg;
+								console.log("头像地址：", this.loginInfo.userAvatar)
 							}
 						})
 						.catch(error => {
@@ -212,17 +197,6 @@
 							console.error('请求出错', error);
 						});
 				}
-			},
-			goToMine() {
-				uni.switchTab({
-					url: "../mine/mine"
-				})
-			},
-			// 未登录状态点击头像跳转到登录页面
-			goToLogin() {
-				uni.navigateTo({
-					url: "../index_login/index_login",
-				})
 			},
 		},
 	}

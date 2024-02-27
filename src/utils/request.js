@@ -6,7 +6,7 @@ const url_all = {
 }
 const service = axios.create({
 	// baseURL 将自动加在 url`前面，除非 url 是一个绝对 URL。
-	baseURL : url_all['TEST'], // 调整当前环境
+	baseURL : url_all['DEV'], // 调整当前环境
 	// timeout设置一个请求超时时间，如果请求时间超过了timeout，请求将被中断，单位为毫秒（ms）
 	timeout: 2500,
 	// headers是被发送的自定义请求头，请求头内容需要根据后端要求去设置，这里我们使用本项目请求头。
