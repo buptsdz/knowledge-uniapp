@@ -1,9 +1,11 @@
 <template>
 	<view class="top-img">
-		<image style="width:100%;height: 270px;" src="../../static/image/background/bg-basefunction-top.png"
-			mode="scaleToFill"></image>
+		<image class="img" src="../../static/image/background/bg-basefunction-top.png" mode="scaleToFill"></image>
 	</view>
-	<topSearchAndLogin ref="top"></topSearchAndLogin>
+	<view class="status_bar">
+		<!-- 这里是状态栏 -->
+	</view>
+	<topSearchAndLogin ref="top" style="margin-top: ;"></topSearchAndLogin>
 	<view class="top-swiper-section">
 		<swiper class="swiper" indicator-color="white" indicator-active-color="#FFDE89" :indicator-dots="true"
 			:autoplay="true" :interval="3000" :duration="1000" :circular="true">
@@ -151,8 +153,7 @@
 		// 	var token = this.$store.state.token;
 		// 	console.log("token：", token);
 		// },
-		onShow() {
-		},
+		onShow() {},
 		methods: {
 
 		},
@@ -167,77 +168,21 @@
 		background-color: $uni-bg-color-signin;
 	}
 
+	//状态栏占位
+	.status_bar {
+		height: var(--status-bar-height);
+		width: 100%;
+	}
+
 	.top-img {
 		position: fixed;
 		width: 100%;
 		height: fit-content;
 		z-index: -10;
-	}
 
-	.top-tab {
-		display: flex;
-		z-index: 1;
-		flex-direction: row;
-		padding-top: 16px;
-		margin-left: 4%;
-		width: 92%;
-
-		.attendance {
-			margin-right: 15px;
-
-			.attendance-button {
-				display: flex;
-				align-items: center;
-				color: white;
-				height: 34px;
-				border-radius: 8px;
-				font-size: 12px;
-				white-space: nowrap;
-				background-image: linear-gradient(to right, rgba(80, 139, 248, 1), rgba(65, 78, 207, 1));
-			}
-		}
-
-		.search {
-			background-color: #E5EDF8;
-			display: flex;
-			flex-grow: 1;
-			align-items: center;
-			border-radius: 12px;
-
-			.search-img {
-				margin-left: 10px;
-				height: 20px;
-				width: 20px;
-			}
-
-			.search-input {
-				margin-left: 10px;
-				font-size: 12px;
-			}
-		}
-
-		.log-in {
-			margin-left: 15px;
-
-			.log-in-button {
-				border-radius: 50%;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				height: 34px;
-				width: 34px;
-				font-size: 12px;
-				white-space: nowrap;
-			}
-
-			.log-in-avatar {
-				border-radius: 50%;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				height: 34px;
-				width: 34px;
-			}
+		.img {
+			width: 100%;
+			height: calc(270px + var(--status-bar-height));
 		}
 	}
 

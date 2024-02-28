@@ -22,7 +22,7 @@
 					</view>
 					<view class="uni-input1">
 						<input type="text" style="margin-left: 7%;" placeholder="请输入您的手机号或用户名"
-							v-model="user.usernameOrPhone" />
+							v-model="user.usernameOrPhone"/>
 					</view>
 				</view>
 				<view class="pin-code">
@@ -30,8 +30,8 @@
 						密码
 					</view>
 					<view class="uni-input2">
-						<input :password="!passwordVisible" style="margin-left: 7%;" focus placeholder="请输入您的密码"
-							v-model="user.password" />
+						<input :password="!passwordVisible" style="margin-left: 7%;" placeholder="请输入您的密码"
+							v-model="user.password"/>
 						<view style="flex-grow: 1; display: flex; justify-content: flex-end;">
 							<image style="height: 18px; width: 18px; right: 20%;" @tap="togglePasswordVisibility"
 								:src="passwordVisible ? '../../static/image/symple/pin-visible.png' : '../../static/image/symple/pin-invisible.png'"

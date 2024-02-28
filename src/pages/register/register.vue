@@ -21,7 +21,7 @@
 						用户名
 					</view>
 					<view class="uni-input1">
-						<input style="margin-left: 7%;" focus placeholder="请输入您的用户名" v-model="user.username" />
+						<input style="margin-left: 7%;" placeholder="请输入您的用户名" v-model="user.username" />
 					</view>
 				</view>
 				<view class="pass-word">

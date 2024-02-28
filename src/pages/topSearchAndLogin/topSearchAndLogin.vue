@@ -57,9 +57,10 @@
 		display: flex;
 		z-index: 1;
 		flex-direction: row;
-		padding-top: 16px;
+		padding-top: 6px;
 		margin-left: 4%;
 		width: 92%;
+		margin-bottom: 20px;
 
 		.attendance {
 			margin-right: 15px;

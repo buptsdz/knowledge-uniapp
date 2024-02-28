@@ -2,7 +2,7 @@
 	<!-- 主页 分成三部分 logo部分 中间部分 底部协议-->
 	<view class="page">
 		<view class="logo">
-			<img class="logo-img" src="../../static/image/logo/logo-dark.png" alt="" />
+			<image class="logo-img" src="/static/image/logo/logo-dark.png" mode="aspectFit" />
 			<text style="margin-top: 6px;">
 				儒升
 			</text>
@@ -11,8 +11,8 @@
 			<view class="button-section">
 				<view class="sign-in-wx">
 					<button class="wx-in" @tap="goTo1()">
-						<img src="../../static/image/logo/wx-logo-light.png"
-							style="height: 20px;align-self: center;margin-right: 6px;" />
+						<image src="../../static/image/logo/wx-logo-light.png"
+							style="height: 20px;width: 20px;align-self: center;margin-right: 6px;" mode=""/>
 						<text>微信登录</text>
 					</button>
 				</view>
