@@ -72,14 +72,6 @@
 					"titleView": false
 				}
 			}
-		},
-		{
-			"path": "pages/topSearchAndLogin/topSearchAndLogin",
-			"style": {
-				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false,
-				"navigationStyle" : "custom"
-			}
 		}
 	],
 	"globalStyle": {

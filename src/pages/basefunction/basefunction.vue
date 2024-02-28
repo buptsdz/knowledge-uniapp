@@ -5,7 +5,7 @@
 	<view class="status_bar">
 		<!-- 这里是状态栏 -->
 	</view>
-	<topSearchAndLogin ref="top" style="margin-top: ;"></topSearchAndLogin>
+	<topSearchAndLogin ref="top"></topSearchAndLogin>
 	<view class="top-swiper-section">
 		<swiper class="swiper" indicator-color="white" indicator-active-color="#FFDE89" :indicator-dots="true"
 			:autoplay="true" :interval="3000" :duration="1000" :circular="true">
@@ -112,7 +112,7 @@
 </template>
 
 <script>
-	import topSearchAndLogin from "../topSearchAndLogin/topSearchAndLogin.vue"
+	import topSearchAndLogin from "@/components/topSearchAndLogin.vue"
 	export default {
 		components: {
 			topSearchAndLogin,

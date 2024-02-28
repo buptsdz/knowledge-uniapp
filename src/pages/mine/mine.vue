@@ -10,7 +10,7 @@
 
 <script>
 	import store from '@/store/index.js'
-	import topSearchAndLogin from "../topSearchAndLogin/topSearchAndLogin.vue"
+	import topSearchAndLogin from "@/components/topSearchAndLogin.vue"
 	export default {
 		components: {
 			topSearchAndLogin,
