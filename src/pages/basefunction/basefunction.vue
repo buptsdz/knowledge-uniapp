@@ -5,7 +5,7 @@
 	<view class="status_bar">
 		<!-- 这里是状态栏 -->
 	</view>
-	<topSearchAndLogin ref="top"></topSearchAndLogin>
+	<topSearchAndLogin :textMsg="topTitle"></topSearchAndLogin>
 	<view class="top-swiper-section">
 		<swiper class="swiper" indicator-color="white" indicator-active-color="#FFDE89" :indicator-dots="true"
 			:autoplay="true" :interval="3000" :duration="1000" :circular="true">
@@ -125,6 +125,7 @@
 				// 	userAvatar: '../../static/image/resource/basepage-defaultAvatar.png', // 默认用户头像地址
 				// },
 				//顶部滑动大图数据
+				topTitle:"登录",
 				topUrlList: [
 					"../../static/image/logo/logo.png",
 					"../../static/image/resource/basepage-top.png",
@@ -165,7 +166,7 @@
 
 	body {
 		width: 100%;
-		background-color: $uni-bg-color-signin;
+		background-color: $uni-bg-color-home;
 	}
 
 	//状态栏占位
@@ -187,7 +188,7 @@
 	}
 
 	.top-swiper-section {
-		margin-top: 20px;
+		margin-top: 5px;
 		margin-left: 2%;
 		width: 96%;
 

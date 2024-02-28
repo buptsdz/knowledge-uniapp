@@ -145,7 +145,7 @@
 								icon: 'success',
 								duration: 2000
 							});
-							this.$router.push("../basefunction/basefunction");
+							this.$router.push("../login/login");
 						} else {
 							// 注册失败的处理逻辑
 							uni.showToast({
@@ -301,7 +301,7 @@
 		flex-grow: 1;
 		display: flex;
 		flex-direction: column;
-		background-color: $uni-bg-color-signin;
+		background-color: $uni-bg-color-home;
 		border-top-right-radius: 20px;
 		border-top-left-radius: 20px;
 		margin-top: -20px;

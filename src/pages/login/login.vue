@@ -238,7 +238,7 @@
 		z-index: 9;
 		display: flex;
 		flex-direction: column;
-		background-color: $uni-bg-color-signin;
+		background-color: $uni-bg-color-home;
 		border-top-right-radius: 20px;
 		border-top-left-radius: 20px;
 		margin-top: -20px;

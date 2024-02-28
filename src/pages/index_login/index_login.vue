@@ -87,7 +87,7 @@
 	@import "../../uni.scss";
 
 	body {
-		background-color: $uni-bg-color-signin;
+		background-color: $uni-bg-color-home;
 	}
 
 	.page {
