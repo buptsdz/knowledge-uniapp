@@ -26,7 +26,7 @@
 				//var state = getApp().globalData.isLoggedIn;
 				var state = this.$store.state.isLoggedIn;
 				console.log("登录状态：", state);
-				if (state) {
+				if (state==true) {
 					this.getUserInfo();
 				} else {
 					return;
@@ -41,7 +41,8 @@
 					console.log(typeof userdata,userdata);
 					// 检查头像（headImg）是否存在且不为空
 					if (userdata.headImg) {
-						console.log("头像地址：",userdata.headImg);
+						store.commit('setAvatar',userdata.headImg);
+						console.log("头像地址：",typeof userdata.headImg,userdata.headImg);
 					} else {
 						console.log("头像地址不存在");
 					}

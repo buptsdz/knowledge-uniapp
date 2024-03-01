@@ -389,7 +389,7 @@
 				if (/^[a-zA-Z\s]*$/.test(this.selectedSchoolName.trim())) return;
 				//发送请求
 				this.$service
-					.get("user-service/api/school", {
+					.get("/user-service/api/school", {
 						params: {
 							current: 1,
 							size: 2,

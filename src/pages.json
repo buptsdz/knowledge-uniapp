@@ -11,7 +11,7 @@
 			"path": "pages/basefunction/basefunction",
 			"style": {
 				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false,
+				"enablePullDownRefresh": true,
 				"navigationStyle": "custom",
 				"app-plus": {
 					"titleView": false

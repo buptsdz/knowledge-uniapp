@@ -8,7 +8,7 @@
 		</view>
 		<view class="user-section">
 			<view class="user-avatar">
-				<image class="img" :src="userdata.avatar" mode=""></image>
+				<image class="img" :src="userAvatar ? userAvatar : this.userdata.avatar" mode=""></image>
 			</view>
 			<view class="user-info">
 				<view class="user-name">
@@ -32,6 +32,9 @@
 
 <script>
 	import store from '@/store/index.js'
+	import {
+		mapState
+	} from 'vuex'
 	import topSearchAndLogin from "@/components/topSearchAndLogin.vue"
 	export default {
 		components: {
@@ -44,11 +47,15 @@
 					avatar: "/static/image/resource/basepage-defaultAvatar.png",
 					username: "用户1654351435",
 					level: 1,
-					location:"武汉",
-					identity:"学生",
+					location: "武汉",
+					identity: "学生",
 				}
 			}
 		},
+		computed: mapState({
+			// 从state中拿到数据 箭头函数可使代码更简练
+			userAvatar: state => state.userdata.headImg,
+		}),
 		methods: {
 			logOut() {
 				store.commit("logout");
@@ -129,26 +136,31 @@
 				display: flex;
 				align-items: center;
 			}
-			.setting{
+
+			.setting {
 				display: flex;
 				align-items: center;
 				flex-grow: 1;
 				justify-content: flex-end;
 				margin-right: 4%;
-				.img{
+
+				.img {
 					height: 35rpx;
 					width: 35rpx;
 					margin-right: 5px;
 				}
 			}
 		}
-		.identity{
+
+		.identity {
 			margin-left: 4%;
 			color: white;
-			.text1{
+
+			.text1 {
 				margin-right: 3px;
 			}
-			.text2{
+
+			.text2 {
 				margin-left: 3px;
 			}
 		}

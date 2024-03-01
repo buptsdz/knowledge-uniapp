@@ -135,7 +135,7 @@
 					return;
 				}
 				// 发送 POST 请求
-				this.$service.post('user-service/api/auth/register', requestData)
+				this.$service.post('/user-service/api/auth/register', requestData)
 					.then(response => {
 						// 请求成功处理
 						if (response.data.isSuccess == 1) {
@@ -197,7 +197,7 @@
 						title: "加载中",
 						mask: true
 					});
-					const response = await this.$service.post('user-service/api/auth/sms', {
+					const response = await this.$service.post('/user-service/api/auth/sms', {
 						phone: this.user.phonenum
 					});
 					// 检查响应是否表示操作成功

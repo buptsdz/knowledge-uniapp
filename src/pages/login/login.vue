@@ -22,7 +22,7 @@
 					</view>
 					<view class="uni-input1">
 						<input type="text" style="margin-left: 7%;" placeholder="请输入您的手机号或用户名"
-							v-model="user.usernameOrPhone"/>
+							v-model="user.usernameOrPhone" />
 					</view>
 				</view>
 				<view class="pin-code">
@@ -31,7 +31,7 @@
 					</view>
 					<view class="uni-input2">
 						<input :password="!passwordVisible" style="margin-left: 7%;" placeholder="请输入您的密码"
-							v-model="user.password"/>
+							v-model="user.password" />
 						<view style="flex-grow: 1; display: flex; justify-content: flex-end;">
 							<image style="height: 18px; width: 18px; right: 20%;" @tap="togglePasswordVisibility"
 								:src="passwordVisible ? '../../static/image/symple/pin-visible.png' : '../../static/image/symple/pin-invisible.png'"
@@ -110,6 +110,10 @@
 					});
 					return;
 				}
+				uni.showLoading({
+					title: "登录中",
+					mask: true,
+				})
 				// 请求登录接口并配置参数
 				this.$service.post("/user-service/api/auth/login", {
 						usernameOrPhone: this.user.usernameOrPhone,
@@ -121,7 +125,7 @@
 						if (res.data.isSuccess == 1) {
 							// 请求成功且服务器返回成功状态
 							var token = res.data.data.token; // 读取token
-							store.commit('setToken',token);//保存token到vuex
+							store.commit('setToken', token); //保存token到vuex
 							store.commit("setLoggedIn");
 							// 登录成功的提示
 							uni.showToast({
@@ -129,8 +133,12 @@
 								icon: "success",
 							});
 							// 跳转到首页
-							this.getUserInfo();
-							this.$router.push("../basefunction/basefunction");
+							this.setUserInfo();
+							setTimeout(() => {
+								uni.switchTab({
+									url: "/pages/basefunction/basefunction"
+								})
+							}, 500);
 						} else {
 							// 服务器返回失败状态
 							uni.showToast({
@@ -144,33 +152,52 @@
 						// 网络或其他错误
 						console.log(err);
 						uni.showToast({
-							title: "网络错误",
+							title: "网络错误，请重试",
 							icon: "none",
 							duration: 2000
 						});
+					})
+					.finally(() => {
+						//隐藏loading
+						uni.hideLoading();
 					});
 			},
 			// 获取用户信息
-			async getUserInfo() {
+			async setUserInfo(retryCount = 3) { // 默认重试次数为3
 				try {
 					// 使用await等待异步请求的结果
-					const response = await this.$service.get("user-service/api/user");
+					const response = await this.$service.get("/user-service/api/user");
 					// 处理成功响应
 					console.log("响应信息：", response);
 					if (response.data.isSuccess == 1) {
 						// 直接使用响应数据
 						const userdata = response.data.data;
 						console.log(typeof userdata);
-						store.commit("login",userdata);
+						store.commit("login", userdata);
 						store.commit("setLoggedIn");
 						// // 使用uni.setStorageSync同步地保存userdata到本地存储
 						// uni.setStorageSync('userdata', JSON.stringify(userdata));
 						// // 打印头像地址用于验证
 						// console.log("用户信息", userdata);
+					} else {
+						// 响应成功但未按预期返回数据，可以考虑重试
+						throw new Error('未获取到用户信息');
 					}
 				} catch (error) {
 					// 处理请求错误
-					console.error('请求出错', error);
+					console.log('请求出错', error);
+					// 判断是否还有重试机会
+					if (retryCount > 0) {
+						console.log(`尝试重新获取用户信息，剩余重试次数：${retryCount - 1}`);
+						await this.setUserInfo(retryCount - 1); // 递归调用，重试次数减1
+					} else {
+						// 重试次数用尽后显示提示
+						uni.showToast({
+							title: "获取用户信息失败",
+							icon: "none",
+							duration: 2000
+						});
+					}
 				}
 			},
 			goTores() {

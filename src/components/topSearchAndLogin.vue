@@ -30,7 +30,7 @@
 		props:['textMsg'],
 		data() {
 			return {
-				defaultAvatarUrl:"../../static/image/resource/basepage-defaultAvatar.png"
+				defaultAvatarUrl:"/static/image/resource/basepage-defaultAvatar.png"
 			}
 		},
 		computed: mapState({

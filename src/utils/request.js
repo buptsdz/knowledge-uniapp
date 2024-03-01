@@ -2,8 +2,8 @@
 import axios from 'axios'
 import store from '@/store/index.js'
 const url_all = {
-	'DEV': 'http://127.0.0.1:280/', //本地开发
-	'TEST': 'http://www.liuchen.work:280/', // 测试
+	'DEV': 'http://127.0.0.1:280', //本地开发
+	'TEST': 'http://www.liuchen.work:280', // 测试
 }
 const service = axios.create({
 	// baseURL 将自动加在 url`前面，除非 url 是一个绝对 URL。
