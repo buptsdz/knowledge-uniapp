@@ -63,6 +63,17 @@
 			}
 		},
 		{
+			"path": "pages/schoolcicle/verification",
+			"style": {
+				"navigationBarTitleText": "verification",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom",
+				"app-plus": {
+					"titleView": false
+				}
+			}
+		},
+		{
 			"path": "pages/pertifunction/pertifunction",
 			"style": {
 				"navigationBarTitleText": "",

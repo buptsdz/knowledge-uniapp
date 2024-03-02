@@ -4,9 +4,9 @@
 			<text>{{label}}</text>
 		</view>
 		<view class="uni-combox__input-box">
-			<input class="uni-combox__input" type="text" :placeholder="placeholder" 
-			placeholder-class="uni-combox__input-plac" v-model="inputVal" @input="onInput" @focus="onFocus" 
-@blur="onBlur" />
+			<input class="uni-combox__input" type="text" :placeholder="placeholder"
+				placeholder-class="uni-combox__input-plac" v-model="inputVal" @input="onInput" @focus="onFocus"
+				@blur="onBlur" />
 			<uni-icons :type="showSelector? 'top' : 'bottom'" size="14" color="#999" @click="toggleSelector">
 			</uni-icons>
 		</view>
@@ -16,9 +16,9 @@
 				<view class="uni-combox__selector-empty" v-if="filterCandidatesLength === 0">
 					<text>{{emptyTips}}</text>
 				</view>
-				<view class="uni-combox__selector-item" v-for="(item,index) in filterCandidates" :key="index" 
-				@click="onSelectorClick(index)">
-					<text>{{item}}</text>
+				<view class="uni-combox__selector-item" v-for="(item,index) in filterCandidates" :key="index"
+					@click="onSelectorClick(index)">
+					<rich-text :nodes="item"></rich-text>
 				</view>
 			</scroll-view>
 		</view>
@@ -132,8 +132,12 @@
 					this.showSelector = false
 				}, 153)
 			},
+			//去除em标签
+			removeEmTagsFromString(str) {
+				return str.replace(/<\/?em>/g, '');
+			},
 			onSelectorClick(index) {
-				this.inputVal = this.filterCandidates[index]
+				this.inputVal = this.removeEmTagsFromString(this.filterCandidates[index]);
 				this.showSelector = false
 				this.$emit('input', this.inputVal)
 				this.$emit('update:modelValue', this.inputVal)
