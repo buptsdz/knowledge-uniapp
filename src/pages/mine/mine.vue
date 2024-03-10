@@ -65,7 +65,10 @@
 					:class="{'button-active': activeIndex === index }">{{ button }}</button>
 			</view>
 			<view class="content">
-				<wrongQuestions v-if="this.activeIndex===0"></wrongQuestions>
+				<wrongQuestions v-show="this.activeIndex===0"></wrongQuestions>
+				<recentlyView v-show="this.activeIndex===1"></recentlyView>
+			    <myCollections v-if="this.activeIndex===2"></myCollections>
+				<scoreMall v-if="this.activeIndex===3"></scoreMall>
 			</view>
 		</view>
 		<button @tap="logOut">退出登录</button>
@@ -79,10 +82,16 @@
 	} from 'vuex'
 	import topSearchAndLogin from "@/components/topSearchAndLogin.vue"
 	import wrongQuestions from "./wrongQuestions.vue"
+	import recentlyView from "./recentlyView.vue"
+	import myCollections from "./myCollections.vue"
+	import scoreMall from "./scoreMall.vue"
 	export default {
 		components: {
 			topSearchAndLogin,
-			wrongQuestions
+			wrongQuestions,
+			recentlyView,
+			myCollections,
+			scoreMall
 		},
 		data() {
 			return {
@@ -344,11 +353,13 @@
 		}
 	}
 
+	//底部区域
 	.bottom-section {
 		display: flex;
 		flex-direction: column;
 		margin-left: 3%;
 		width: 94%;
+		margin-top: 15px;
 		background-color: #CCDEFC;
 		border-radius: 15px;
 		height: fit-content;
@@ -362,7 +373,7 @@
 		flex-direction: row;
 		align-self: center;
 
-		>*{
+		>* {
 			color: white;
 			display: flex;
 			align-items: center;
@@ -373,7 +384,7 @@
 		}
 
 		.button-active {
-			background-image:linear-gradient(to right,  rgba(143, 174, 255, 1),  rgba(143, 174, 255, 1)); // 根据需求设定选中按钮的背景颜色
+			background-image: linear-gradient(to right, rgba(143, 174, 255, 1), rgba(143, 174, 255, 1)); // 根据需求设定选中按钮的背景颜色
 		}
 	}
 </style>
