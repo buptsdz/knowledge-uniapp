@@ -10,11 +10,12 @@
 		<view class="log-in">
 			<view v-if="isLoggedIn">
 				<!-- 如果已登录，显示用户头像 -->
-				<image class="log-in-avatar" :src="userAvatar ? userAvatar : defaultAvatarUrl" @tap="goToMine" mode="scaleToFill"></image>
+				<image class="log-in-avatar" :src="userAvatar ? userAvatar : defaultAvatarUrl" @tap="goToMine"
+					mode="scaleToFill"></image>
 			</view>
-			<view v-else>
+			<view v-else class="log-in-button">
 				<!-- 如果未登录，显示登录按钮 -->
-				<button class="log-in-button" @tap="goToLogin">{{textMsg}}</button>
+				<text style="margin-bottom: 2px;" @tap="goToLogin">{{textMsg}}</text>
 			</view>
 		</view>
 	</view>
@@ -26,11 +27,11 @@
 		mapState
 	} from 'vuex';
 	export default {
-		name:"topSearchAndLogin",
-		props:['textMsg'],
+		name: "topSearchAndLogin",
+		props: ['textMsg'],
 		data() {
 			return {
-				defaultAvatarUrl:"/static/image/resource/basepage-defaultAvatar.png"
+				defaultAvatarUrl: "/static/image/resource/basepage-defaultAvatar.png"
 			}
 		},
 		computed: mapState({
@@ -57,7 +58,7 @@
 <style lang="scss">
 	.top-tab {
 		display: flex;
-		z-index: 1;
+		z-index: 5;
 		flex-direction: row;
 		padding-top: 7px;
 		margin-left: 4%;
@@ -85,6 +86,7 @@
 			flex-grow: 1;
 			align-items: center;
 			border-radius: 12px;
+			z-index: 5;
 
 			.search-img {
 				margin-left: 10px;
@@ -109,7 +111,7 @@
 				height: 34px;
 				width: 34px;
 				font-size: 12px;
-				white-space: nowrap;
+				background-color: #E5EDF8;
 			}
 
 			.log-in-avatar {

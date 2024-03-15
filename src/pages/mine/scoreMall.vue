@@ -1,6 +1,6 @@
 <template>
-	<view>
-		积分商城
+	<view class="">
+		d积分
 	</view>
 </template>
 

@@ -65,10 +65,13 @@
 					:class="{'button-active': activeIndex === index }">{{ button }}</button>
 			</view>
 			<view class="content">
-				<wrongQuestions v-show="this.activeIndex===0"></wrongQuestions>
-				<recentlyView v-show="this.activeIndex===1"></recentlyView>
-			    <myCollections v-if="this.activeIndex===2"></myCollections>
-				<scoreMall v-if="this.activeIndex===3"></scoreMall>
+				<view class="needlogin" v-if="isloggdin===false">
+					请登录后查看
+				</view>
+				<wrongQuestions v-show="activeIndex===0 && isloggdin===true"></wrongQuestions>
+				<recentlyView v-show="activeIndex===1 && isloggdin===true"></recentlyView>
+				<myCollections v-if="activeIndex===2 && isloggdin===true"></myCollections>
+				<scoreMall v-if="activeIndex===3 && isloggdin===true"></scoreMall>
 			</view>
 		</view>
 		<button @tap="logOut">退出登录</button>
@@ -109,13 +112,17 @@
 					friends: 0 //好友
 				},
 				buttons: ['近期错题', '最近浏览', '我的收藏', '积分商城'],
-				activeIndex: 0 // 初始值为0表示第一个按钮被选中
+				activeIndex: 0, // 初始值为0表示第一个按钮被选中
 			}
 		},
 		computed: mapState({
 			// 从state中拿到数据 箭头函数可使代码更简练
 			userAvatar: state => state.userdata.headImg,
+			isloggdin: state => state.isLoggedIn,
 		}),
+		onShow(){
+			console.log("登录状态",this.isloggdin);
+		},
 		methods: {
 			changeColor(index) {
 				this.activeIndex = index; // 更新选中按钮的索引
@@ -145,7 +152,7 @@
 		background-color: white;
 	}
 
-	body {
+	page {
 		background-color: $uni-bg-color-home;
 	}
 
@@ -364,6 +371,17 @@
 		border-radius: 15px;
 		height: fit-content;
 		padding-bottom: 10px;
+
+		.content {
+			.needlogin {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin-top: 10px;
+				height: 50px;
+				font-size: 18px;
+			}
+		}
 	}
 
 	.bottom-section .title {

@@ -1,6 +1,6 @@
 <template>
 	<view class="top-img">
-		<image class="img" src="../../static/image/background/bg-basefunction-top.png" mode="scaleToFill"></image>
+		<image class="img" src="@/static/image/background/bg-basefunction-top.png" mode="scaleToFill"></image>
 	</view>
 	<view class="status_bar">
 		<!-- 这里是状态栏 -->
@@ -125,7 +125,7 @@
 				// 	userAvatar: '../../static/image/resource/basepage-defaultAvatar.png', // 默认用户头像地址
 				// },
 				//顶部滑动大图数据
-				topTitle:"登录",
+				topTitle: "登录",
 				topUrlList: [
 					"../../static/image/logo/logo.png",
 					"../../static/image/resource/basepage-top.png",
@@ -164,9 +164,10 @@
 <style lang="scss">
 	@import "../../uni.scss";
 
-	body {
+	page {
 		width: 100%;
 		background-color: $uni-bg-color-home;
+		z-index: -2;
 	}
 
 	//状态栏占位
@@ -179,7 +180,7 @@
 		position: fixed;
 		width: 100%;
 		height: fit-content;
-		z-index: -10;
+		z-index: 0;
 
 		.img {
 			width: 100%;
@@ -210,6 +211,7 @@
 		flex-direction: row;
 		margin-top: 18px;
 		gap: 8vw;
+		z-index: 10;
 
 		.four-button-item {
 			display: flex;
