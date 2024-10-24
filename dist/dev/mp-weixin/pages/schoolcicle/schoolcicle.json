@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "schoolcicle",
+  "enablePullDownRefresh": false,
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "verification": "./verification"
+  }
+}

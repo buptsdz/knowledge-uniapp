@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "top-search-and-login": "../../components/topSearchAndLogin",
+    "wrong-questions": "./wrongQuestions",
+    "recently-view": "./recentlyView",
+    "my-collections": "./myCollections",
+    "score-mall": "./scoreMall"
+  }
+}

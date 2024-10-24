@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "verification",
+  "enablePullDownRefresh": false,
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "uni-combox": "../../uni_modules/uni-combox/components/uni-combox/uni-combox",
+    "uv-overlay": "../../uni_modules/uv-overlay/components/uv-overlay/uv-overlay"
+  }
+}

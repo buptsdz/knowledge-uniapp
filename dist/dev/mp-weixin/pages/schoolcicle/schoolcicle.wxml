@@ -1,0 +1,1 @@
+<view class="status_bar"></view><button bindtap="{{a}}">发布</button><verification class="r" u-r="verificationRef" u-i="57bfea49-0" bind:__l="__l"></verification>

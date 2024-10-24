@@ -102,6 +102,7 @@
 
 		.log-in {
 			margin-left: 15px;
+			z-index: 5;
 
 			.log-in-button {
 				border-radius: 50%;

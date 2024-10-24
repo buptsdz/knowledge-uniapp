@@ -1,0 +1,1 @@
+<uv-transition wx:if="{{c}}" class="data-v-471c50bd" u-s="{{['d']}}" bindclick="{{a}}" catchtouchmove="{{b}}" u-i="471c50bd-0" bind:__l="__l" u-p="{{c}}"><slot/></uv-transition>

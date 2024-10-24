@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "login",
+  "enablePullDownRefresh": false,
+  "navigationStyle": "custom",
+  "usingComponents": {}
+}

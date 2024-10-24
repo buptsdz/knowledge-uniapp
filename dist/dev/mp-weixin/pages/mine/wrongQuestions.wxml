@@ -1,0 +1,1 @@
+<view class="page"><view wx:for="{{a}}" wx:for-item="paper" wx:key="c" class="paper-section"><image class="img" src="{{paper.a}}" mode="widthFix"></image><text class="text">{{paper.b}}</text></view></view>

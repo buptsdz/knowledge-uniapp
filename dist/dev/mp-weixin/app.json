@@ -1,0 +1,55 @@
+{
+  "pages": [
+    "pages/basefunction/basefunction",
+    "pages/index_login/index_login",
+    "pages/login/login",
+    "pages/register/register",
+    "pages/schoolcicle/schoolcicle",
+    "pages/schoolcicle/verification",
+    "pages/pertifunction/pertifunction",
+    "pages/mine/mine",
+    "pages/mine/myCollections",
+    "pages/mine/recentlyView",
+    "pages/mine/scoreMall",
+    "pages/mine/wrongQuestions"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "rgba(229, 237, 248, 1)",
+    "backgroundColor": "rgba(229, 237, 248, 1)"
+  },
+  "tabBar": {
+    "color": "white",
+    "selectedColor": "black",
+    "borderStyle": "black",
+    "backgroundColor": "rgb(72,105,226)",
+    "list": [
+      {
+        "pagePath": "pages/basefunction/basefunction",
+        "iconPath": "static/image/tabbar-icons/basefunc-unselected.png",
+        "selectedIconPath": "static/image/tabbar-icons/basefunc-unselected.png",
+        "text": "基础功能"
+      },
+      {
+        "pagePath": "pages/schoolcicle/schoolcicle",
+        "iconPath": "static/image/tabbar-icons/schoolcicle-unselected.png",
+        "selectedIconPath": "static/image/tabbar-icons/schoolcicle-unselected.png",
+        "text": "校园圈"
+      },
+      {
+        "pagePath": "pages/pertifunction/pertifunction",
+        "iconPath": "static/image/tabbar-icons/partifunc-unselected.png",
+        "selectedIconPath": "static/image/tabbar-icons/partifunc-unselected.png",
+        "text": "特色功能"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "iconPath": "static/image/tabbar-icons/mine-unselected.png",
+        "selectedIconPath": "static/image/tabbar-icons/mine-unselected.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

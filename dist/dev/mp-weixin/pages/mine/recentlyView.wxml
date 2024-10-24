@@ -1,0 +1,1 @@
+<view class="recentview-sec"><view wx:for="{{a}}" wx:for-item="row" wx:key="b" class="recentview-sec-row"><view wx:for="{{row.a}}" wx:for-item="item" wx:key="c" class="item"><view class="item-image"><image src="{{item.a}}" class="img" mode="scaleToFill"></image></view><text class="item-title">{{item.b}}</text></view></view></view>

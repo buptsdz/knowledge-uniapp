@@ -1,0 +1,1 @@
+<view class="collection-list"><view wx:if="{{a}}" class="paper-list"><view wx:for="{{b}}" wx:for-item="paper" wx:key="a" class="paper-item"></view></view></view>
